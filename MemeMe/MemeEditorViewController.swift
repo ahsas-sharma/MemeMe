@@ -259,28 +259,22 @@ extension MemeEditorViewController: UITextFieldDelegate {
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         if !didSelectImage {
+            // If no image is selected, inform the user
             let alertController = UIAlertController(title: "No image selected", message: "To begin editing, please select an image from the library or using the camera.", preferredStyle: .alert)
             let defaultAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
             alertController.addAction(defaultAction)
             self.present(alertController, animated: true, completion: nil)
+            
+        } else {
+            // Clear default text
+            if textField.text == "TOP" || textField.text == "BOTTOM" {
+                textField.text = ""
+            }
         }
+        
         return didSelectImage
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == self.bottomTextField {
-            self.showStatusBar = false
-            setNeedsStatusBarAppearanceUpdate()
-        }
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField == self.bottomTextField {
-            self.showStatusBar = true
-            setNeedsStatusBarAppearanceUpdate()
-        }
-    }
-   
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
