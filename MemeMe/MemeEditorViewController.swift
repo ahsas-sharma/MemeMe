@@ -23,6 +23,7 @@ class MemeEditorViewController: UIViewController {
     
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var resetButton: UIBarButtonItem!
     
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var toolbar: UIToolbar!
@@ -32,16 +33,14 @@ class MemeEditorViewController: UIViewController {
     var didSelectImage: Bool = false
     var memedImage: UIImage?
     var showStatusBar: Bool = true
+    var memeToEdit: Meme!
     
-    // MARK:- View Lifecycle -
+       // MARK:- View Lifecycle -
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.imageView.contentMode = .scaleAspectFit
-        
-        // Enable or disable camera button based on source availability
-        cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         
         // Disable share and cancel button when the view first loads
         updateButtonsUI(didSelectImage)
@@ -61,13 +60,25 @@ class MemeEditorViewController: UIViewController {
         }
         topTextField.text = "TOP"
         bottomTextField.text = "BOTTOM"
+        
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+                
+        // Enable or disable camera button based on source availability
+        cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+
         // Subscribe to be notified when keyboard appears and move the view as necessary
         self.subscribeToKeyboardNotifications()
+        
+        // If MemeEditor is opened to edit a meme, load it up
+        if memeToEdit != nil {
+            loadSavedMemeInEditor(memeToEdit)
+            didSelectImage = true
+            updateButtonsUI(didSelectImage)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -94,20 +105,12 @@ class MemeEditorViewController: UIViewController {
     
     // Allows the user to pick an image from the Photos library
     @IBAction func pickAnImageFromAlbum(_ sender: Any) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
-        imagePicker.modalPresentationStyle = .overCurrentContext
-        present(imagePicker, animated: true, completion: nil)
+        pickAnImageFrom(.photoLibrary)
     }
     
     // Allows the user to take a new picture using the device camera
     @IBAction func pickAnImageFromCamera(_ sender: Any) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .camera
-        imagePicker.modalPresentationStyle = .overCurrentContext
-        present(imagePicker, animated: true, completion: nil)
+        pickAnImageFrom(.camera)
     }
     
     // Opens the acivity view controller
@@ -145,27 +148,36 @@ class MemeEditorViewController: UIViewController {
                         let dismissTime = DispatchTime.now() + 2
                         DispatchQueue.main.asyncAfter(deadline: dismissTime){
                             alertController.dismiss(animated: true, completion: nil)
+                            self.presentingViewController?.dismiss(animated: true, completion: nil)
                         }
 
                     }
+                    
                 }
         }
         self.present(activityViewController, animated: true, completion: nil)
     }
     
-    // Resets the Meme editor to its default state
+    /// Dismiss the presented instance of MemeEditorViewController and reset the editor to its default state
     @IBAction func resetMemeEditor() {
-            self.imageView.image = nil
-            self.topTextField.text = "TOP"
-            self.bottomTextField.text = "BOTTOM"
+        
+        imageView.image = nil
+        topTextField.text = "TOP"
+        bottomTextField.text = "BOTTOM"
+        didSelectImage = false
+        updateButtonsUI(didSelectImage)
+    }
+    
+    @IBAction func dismissMemeEditor() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     // MARK:- Keyboard -
     
-    // Move up the main view by the height of the keyboard
+    /// Move up the main view by the height of the keyboard
     func keyboardWillShow(_ notification: NSNotification) {
         if bottomTextField.isFirstResponder {
-            view.frame.origin.y -= getKeyboardHeight(notification)
+            view.frame.origin.y = getKeyboardHeight(notification) * (-1)
         }
     }
     
@@ -173,20 +185,20 @@ class MemeEditorViewController: UIViewController {
         resetViewFrame()
     }
     
-    // Return the height of keyboard's frame using the notification
+    /// Return the height of keyboard's frame using the notification
     func getKeyboardHeight(_ notification: NSNotification) -> CGFloat {
         let userInfo = notification.userInfo
         let keyboardSize = userInfo?[UIKeyboardFrameEndUserInfoKey] as! NSValue
         return keyboardSize.cgRectValue.height
     }
     
-    // Subscribe to get notified when the keyboard is about to appear
+    /// Subscribe to get notified when the keyboard is about to show or hide
     func subscribeToKeyboardNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
     }
     
-    // Unsubscribe from UIKeyboardWillShow notification
+    /// Unsubscribe from keyboard notification
     func unsubscribeToKeyboardNotifications() {
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
@@ -194,17 +206,27 @@ class MemeEditorViewController: UIViewController {
     
     // MARK:- Helper functions
     
-    // Reset the view frame's y axis back to the original state
+    /// Reset the view's frame's y-coordinate back to the original value
     func resetViewFrame() {
         view.frame.origin.y = 0
     }
     
-    // Update share and cancel buttons based on image selection
+    /// Update share and cancel buttons based on image selection
     func updateButtonsUI(_ isEnabled: Bool) {
         self.shareButton.isEnabled = isEnabled
-        self.cancelButton.isEnabled = isEnabled
+        self.resetButton.isEnabled = isEnabled
     }
     
+    /// Presents an imagePickerController based on the source type
+    func pickAnImageFrom(_ source: UIImagePickerControllerSourceType) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = source
+        imagePicker.modalPresentationStyle = .overCurrentContext
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    /// Returns a UIImage object generated from the current view
     func generateMemedImage() -> UIImage {
         
         // Hide toolbar and navbar
@@ -224,10 +246,25 @@ class MemeEditorViewController: UIViewController {
         return memedImage
     }
     
+    /// Create an instance of Meme and append it to the memes array in AppDelegate
     func saveMeme() {
         
-        // Create an instance of Meme (named changed to silence compiler warning for an unused value)
-        _ = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image!, memeImage: memedImage!)
+        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image!, memeImage: memedImage!)
+        
+        let object = UIApplication.shared.delegate
+        let appDelegate = object as! AppDelegate
+        appDelegate.memes.append(meme)
+        
+        print("Saved a Meme. AppDelegate meme count: \(appDelegate.memes.count)")
+    }
+
+    /// Prepares the editor by seting the textfields and imageView values as per the saved Meme object
+    ///
+    /// - Parameter meme: Meme object to edit
+    func loadSavedMemeInEditor(_ meme: Meme) {
+        self.topTextField.text = meme.topText
+        self.bottomTextField.text = meme.bottomText
+        self.imageView.image = meme.originalImage
     }
     
 }
@@ -263,6 +300,14 @@ extension MemeEditorViewController: UITextFieldDelegate {
             let defaultAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
             alertController.addAction(defaultAction)
             self.present(alertController, animated: true, completion: nil)
+        } else {
+            
+            if textField == topTextField && textField.text == "TOP" {
+                topTextField.text = ""
+            }
+            if textField == bottomTextField && textField.text == "BOTTOM" {
+             bottomTextField.text = ""
+            }
         }
         return didSelectImage
     }
@@ -287,3 +332,25 @@ extension MemeEditorViewController: UITextFieldDelegate {
     }
     
 }
+// MARK:- TODOS
+// TODO:- Gesture Recognizers
+
+/*
+ var topGestureRecognizer: UIPanGestureRecognizer!
+ var bottomGestureRecognizer: UIPanGestureRecognizer!
+ 
+
+let topGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(MemeEditorViewController.userDragged(gesture:)))
+let bottomGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(MemeEditorViewController.userDragged(gesture:)))
+
+topTextField.addGestureRecognizer(topGestureRecognizer)
+topTextField.isUserInteractionEnabled = true
+bottomTextField.addGestureRecognizer(bottomGestureRecognizer)
+bottomTextField.isUserInteractionEnabled = true
+ 
+ func userDragged(gesture: UIPanGestureRecognizer){
+ let loc = gesture.location(in: self.view)
+ gesture == topGestureRecognizer ? (self.topTextField.center = loc) : (self.bottomTextField.center = loc)
+ }
+ 
+ */

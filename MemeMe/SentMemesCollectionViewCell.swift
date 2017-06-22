@@ -12,5 +12,10 @@ class SentMemesCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
     
-    var meme: Meme!
+    var meme: Meme! {
+        didSet {
+            print("didSet Image")
+            self.imageView.image = meme.memeImage
+        }
+    }
 }

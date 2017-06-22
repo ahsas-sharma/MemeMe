@@ -12,17 +12,9 @@ struct Meme {
     
     // MARK:- Properties -
     
-    var topText: String
-    var bottomText: String
-    var originalImage: UIImage
-    var memeImage: UIImage
+    let topText: String
+    let bottomText: String
+    let originalImage: UIImage
+    let memeImage: UIImage
     
-    // MARK:- Initializer -
-    
-    init(topText: String, bottomText: String, originalImage: UIImage, memeImage: UIImage) {
-        self.topText = topText
-        self.bottomText = bottomText
-        self.originalImage = originalImage
-        self.memeImage = memeImage
-    }
 }
