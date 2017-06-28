@@ -54,7 +54,7 @@ class SentMemesTableViewController: UITableViewController {
     
     
     @IBAction func openMemeEditor(_ sender: UIButton) {
-        let memeEditorVC = self.storyboard!.instantiateViewController(withIdentifier: "MemeEditorViewController") as! MemeEditorViewController
+        let memeEditorVC = self.storyboard!.instantiateViewController(withIdentifier: "MemeEditorNavigationController") 
         
         // Use tabBarController to present the editor otherwise tab and navigation bars appear on top. Since the back button is not required and instead cancel button is used to dismiss the editor, the MemeEditorViewController is presented modally.
         self.tabBarController?.present(memeEditorVC, animated: true, completion: nil)

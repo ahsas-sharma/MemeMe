@@ -32,9 +32,10 @@ class MemeDetailViewController: UIViewController {
     
     // TODO:- When an edited image is being saved, remove the previous copy by holding reference to the index of element in [Meme]
     func openMemeInEditor() {
-        let memeEditorVC = self.storyboard!.instantiateViewController(withIdentifier: "MemeEditorViewController") as! MemeEditorViewController
+        let memeEditorNavigationController = self.storyboard!.instantiateViewController(withIdentifier: "MemeEditorNavigationController") as! UINavigationController
+        let memeEditorVC = memeEditorNavigationController.viewControllers.first as! MemeEditorViewController
         memeEditorVC.memeToEdit = meme
-        self.tabBarController?.present(memeEditorVC, animated: true, completion: nil)
+        self.tabBarController?.present(memeEditorNavigationController, animated: true, completion: nil)
     }
     
     @IBAction func imageTapped(_ sender: UITapGestureRecognizer) {
@@ -83,9 +84,6 @@ class MemeDetailViewController: UIViewController {
         self.tabBarController?.tabBar.frame = frame!
         self.tabBarController?.tabBar.isHidden = true
 
-//        UIView.animate(withDuration: 0.5, animations: {
-//            self.tabBarController?.tabBar.frame = frame!
-//        })
     }
     
     func showTabBar() {
@@ -94,68 +92,6 @@ class MemeDetailViewController: UIViewController {
         self.tabBarController?.tabBar.frame = frame!
         self.tabBarController?.tabBar.isHidden = false
 
-//        UIView.animate(withDuration: 0.5, animations: {
-//            self.tabBarController?.tabBar.frame = frame!
-//        })
     }
 }
 
-
-
-
-
-
-
-
-/*
- 
- @IBAction func imageTapped(_ sender: UITapGestureRecognizer) {
- let imageView = sender.view as! UIImageView
- 
- // If image is not on full screen, do so now
- if !isFullScreen {
- 
- originalImageFrame = imageView.frame
- navBarFrame = self.navigationController?.navigationBar.frame
- tabBarFrame = self.tabBarController?.tabBar.frame
- 
- UIView.animate(withDuration: 0.5, animations: {
- print("UIScreen.main.bounds: \(UIScreen.main.bounds)")
- print("UIScreen.main.bounds.origin: \(UIScreen.main.bounds.origin)")
- print("imageView.bounds: \(imageView.bounds)")
- print("imageView.frame: \(imageView.frame)")
- print("navBarFrame: \(self.navBarFrame)")
- print("tabBarFrame: \(self.tabBarFrame)")
- imageView.bounds = UIScreen.main.bounds
- imageView.frame.origin = CGPoint(x: 0, y: 0)
- imageView.backgroundColor = .black
- //                self.navigationController?.navigationBar.frame = CGRect(x: self.view.frame.minX, y: self.view.frame.minY, width: 0, height: 0)
- self.tabBarController?.tabBar.frame = CGRect(x: self.view.frame.minX, y: self.view.frame.maxY, width: 0, height: 0)
- })
- 
- //            self.navigationController?.isNavigationBarHidden = true
- self.tabBarController?.tabBar.isHidden = true
- isFullScreen = true
- 
- print("----------------AFTER ANIMATION ---------------- ")
- print("UIScreen.main.bounds: \(UIScreen.main.bounds)")
- print("UIScreen.main.bounds.origin: \(UIScreen.main.bounds.origin)")
- print("imageView.bounds: \(imageView.bounds)")
- print("imageView.frame: \(imageView.frame)")
- print("navBarFrame: \(self.navBarFrame)")
- print("tabBarFrame: \(self.tabBarFrame)")
- 
- } else {
- // If Image is displayed on full screen, return to its original state
- UIView.animate(withDuration: 0.5, animations: {
- sender.view?.frame = self.originalImageFrame
- self.navigationController?.navigationBar.frame = self.navBarFrame
- self.tabBarController?.tabBar.frame = self.tabBarFrame
- })
- self.navigationController?.isNavigationBarHidden = false
- self.tabBarController?.tabBar.isHidden = false
- isFullScreen = false
- }
- }
- 
- */

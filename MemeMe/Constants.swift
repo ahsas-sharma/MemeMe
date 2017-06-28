@@ -26,10 +26,16 @@ struct Constants {
         return fontsArray
     }
     
+    
+    // Stores an array of UI Colors
+    static let colors = [UIColor.black, UIColor.blue, UIColor.brown, UIColor.cyan, UIColor.gray, UIColor.green, UIColor.magenta, UIColor.orange, UIColor.purple, UIColor.red, UIColor.white, UIColor.yellow]
+
+    
     // Stores default text attributes for the text fields in textAttributes struct
     static let defaultTextAttributes = TextAttributes(fontName: "Impact", fontSize: 30, fontColor: UIColor.white, borderWidth: -5, borderColor: UIColor.black, topTextFieldCenter: nil, bottomTextFieldCenter: nil)
 
     // Default preview text
     static let previewText = "THIS IS MEME ME!"
+    
     
 }

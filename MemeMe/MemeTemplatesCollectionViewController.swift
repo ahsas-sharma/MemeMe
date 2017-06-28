@@ -13,6 +13,7 @@ class MemeTemplatesCollectionViewController: UICollectionViewController {
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
     var imageFilePaths: [String]!
+    var memeEditorVC: MemeEditorViewController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +46,6 @@ class MemeTemplatesCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let memeEditorVC = self.presentingViewController as! MemeEditorViewController
         memeEditorVC.imageView.image = UIImage(contentsOfFile: self.imageFilePaths[(indexPath as NSIndexPath).row])
         memeEditorVC.didSelectImage = true
         dismiss(animated: true, completion: nil)

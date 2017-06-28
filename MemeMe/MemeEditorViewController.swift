@@ -99,16 +99,20 @@ class MemeEditorViewController: UIViewController {
         // If MemeEditor is opened to edit a meme, load it up
         if memeToEdit != nil {
             loadSavedMemeInEditor(memeToEdit)
-            didSelectImage = true
-        } else {
-            // If user set custom text attributes, apply them now
-            if (customTextAttributes != nil) {
-                for textField in textFields {
-                    textField.defaultTextAttributes = customTextAttributes!.attributesDict()
-                }
+            if memeToEdit.textAttributes != nil {
+                print("MemeEditorVC: viewWillAppear: MemeToEdit: Setting custom text attributes.")
+                self.customTextAttributes = memeToEdit.textAttributes
             }
+            didSelectImage = true
         }
         
+        // If user set custom text attributes, apply them now
+        if (customTextAttributes != nil) {
+            print("MemeEditorVC: viewWillAppear: Setting custom text attributes.")
+            for textField in textFields {
+                textField.defaultTextAttributes = customTextAttributes!.attributesDict()
+            }
+        }
         
         // If a meme image was selected from templates or an existing meme, update buttons UI
         updateButtonsUI(didSelectImage)
@@ -149,7 +153,9 @@ class MemeEditorViewController: UIViewController {
     
     // Allows the user to pick an image from a collection of popular memes
     @IBAction func pickAnImageFromTemplates(_ sender: Any) {
-        let memeTemplatesNavigationController = self.storyboard!.instantiateViewController(withIdentifier: "MemeTemplatesNavigationController")
+        let memeTemplatesNavigationController = self.storyboard!.instantiateViewController(withIdentifier: "MemeTemplatesNavigationController") as! UINavigationController
+        let templatesVC = memeTemplatesNavigationController.viewControllers.first as! MemeTemplatesCollectionViewController
+        templatesVC.memeEditorVC = self
         present(memeTemplatesNavigationController, animated: true, completion: nil)
     }
     
@@ -214,7 +220,7 @@ class MemeEditorViewController: UIViewController {
     }
     
     @IBAction func dismissMemeEditor() {
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.dismiss(animated: true, completion: nil)
     }
     
     // MARK:- Keyboard -
@@ -277,7 +283,7 @@ class MemeEditorViewController: UIViewController {
     func generateMemedImage() -> UIImage {
         
         // Hide toolbar and navbar
-        self.navigationBar.isHidden = true
+        self.navigationController?.navigationBar.isHidden = true
         self.toolbar.isHidden = true
         
         // Render view to an image
@@ -287,7 +293,7 @@ class MemeEditorViewController: UIViewController {
         UIGraphicsEndImageContext()
         
         // Show toolbar and navbar
-        self.navigationBar.isHidden = false
+        self.navigationController?.navigationBar.isHidden = false
         self.toolbar.isHidden = false
         
         return memedImage
@@ -333,6 +339,20 @@ class MemeEditorViewController: UIViewController {
         gesture == topGestureRecognizer ? (self.topTextField.center = loc) : (self.bottomTextField.center = loc)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "MemeSettingsTableViewController" {
+            let memeSettingsVC = segue.destination as! MemeSettingsTableViewController
+            
+            // Retain reference to the instance of meme editor view controller
+            memeSettingsVC.memeEditorVC = self
+            
+            // If custom attributes were set, load them up in settings
+            if self.customTextAttributes != nil {
+                memeSettingsVC.customTextAttributes = self.customTextAttributes
+            }
+        }
+    }
+    
 }
 
 // MARK:- ImagePicker Delegate -
@@ -341,12 +361,12 @@ extension MemeEditorViewController: UIImagePickerControllerDelegate, UINavigatio
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+        let image = (info[UIImagePickerControllerEditedImage] as? UIImage) != nil ? (info[UIImagePickerControllerEditedImage] as? UIImage) : (info[UIImagePickerControllerOriginalImage] as? UIImage)
+        
             self.imageView.image = image
             self.didSelectImage = true
             updateButtonsUI(didSelectImage)
-        }
-
+        
         dismiss(animated: true, completion: nil)
     }
     
