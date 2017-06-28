@@ -10,6 +10,8 @@ import UIKit
 
 class SentMemesTableViewController: UITableViewController {
     
+    //TODO: - Add a "swipe to delete” function to your table view to allow users to delete a meme.
+
     var memes = [Meme]()
     
     override func viewDidLoad() {
@@ -23,8 +25,8 @@ class SentMemesTableViewController: UITableViewController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         memes = appDelegate.memes
         
-        print("SentMemesTableViewController: viewWillAppear: reloadData()")
         tableView.reloadData()
+        
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -53,9 +55,8 @@ class SentMemesTableViewController: UITableViewController {
     
     @IBAction func openMemeEditor(_ sender: UIButton) {
         let memeEditorVC = self.storyboard!.instantiateViewController(withIdentifier: "MemeEditorViewController") as! MemeEditorViewController
-//        memeEditorVC.modalPresentationStyle = .fullScreen
         
-        // Use tabBarController to present the editor otherwise tabBar and navigation bar appear on top
+        // Use tabBarController to present the editor otherwise tab and navigation bars appear on top. Since the back button is not required and instead cancel button is used to dismiss the editor, the MemeEditorViewController is presented modally.
         self.tabBarController?.present(memeEditorVC, animated: true, completion: nil)
     }
 

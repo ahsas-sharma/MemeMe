@@ -35,7 +35,21 @@ class MemeEditorViewController: UIViewController {
     var showStatusBar: Bool = true
     var memeToEdit: Meme!
     
-       // MARK:- View Lifecycle -
+    var topGestureRecognizer: UIPanGestureRecognizer!
+    var bottomGestureRecognizer: UIPanGestureRecognizer!
+    
+    var defaultTopTextFieldCenter: CGPoint!
+    var defaultBottomTextFieldCenter: CGPoint!
+    var isTextFieldPositionLocked: Bool = true
+    var textFieldsPositionDidChange: Bool = false
+    
+    var fontsArray = [String]()
+    
+    var customTextAttributes: TextAttributes?
+    
+//    var defaultTextAttributes
+    
+    // MARK:- View Lifecycle -
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,24 +58,33 @@ class MemeEditorViewController: UIViewController {
         
         // Disable share and cancel button when the view first loads
         updateButtonsUI(didSelectImage)
-        
-        // Define attributes for textfields
-        let memeTextAttributes:[String:Any] = [
-            NSStrokeColorAttributeName : UIColor.black,
-            NSForegroundColorAttributeName: UIColor.white,
-            NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 50)!,
-            NSStrokeWidthAttributeName: -5.0]
 
         // Set textfields delegate and appearance
         for textfield in textFields {
             textfield.delegate = self
-            textfield.defaultTextAttributes = memeTextAttributes
+            textfield.defaultTextAttributes = Constants.defaultTextAttributes.attributesDict()
             textfield.textAlignment = .center
         }
+        
         topTextField.text = "TOP"
         bottomTextField.text = "BOTTOM"
         
+        // Add pan gesture recognizers to allow user to reposition the text fields
+        topGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(MemeEditorViewController.userDraggedTextField(gesture:)))
+        bottomGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(MemeEditorViewController.userDraggedTextField(gesture:)))
+        topTextField.addGestureRecognizer(topGestureRecognizer)
+        bottomTextField.addGestureRecognizer(bottomGestureRecognizer)
     
+        // Store default position
+        defaultTopTextFieldCenter = topTextField.center
+        defaultBottomTextFieldCenter = bottomTextField.center
+        
+        // Populate font names array
+        for family in UIFont.familyNames {
+            for font in UIFont.fontNames(forFamilyName: family) {
+               fontsArray.append(font)
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -77,8 +100,19 @@ class MemeEditorViewController: UIViewController {
         if memeToEdit != nil {
             loadSavedMemeInEditor(memeToEdit)
             didSelectImage = true
-            updateButtonsUI(didSelectImage)
+        } else {
+            // If user set custom text attributes, apply them now
+            if (customTextAttributes != nil) {
+                for textField in textFields {
+                    textField.defaultTextAttributes = customTextAttributes!.attributesDict()
+                }
+            }
         }
+        
+        
+        // If a meme image was selected from templates or an existing meme, update buttons UI
+        updateButtonsUI(didSelectImage)
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -97,9 +131,9 @@ class MemeEditorViewController: UIViewController {
         }
     }
     
-    override var prefersStatusBarHidden : Bool {
-        return showStatusBar
-    }
+//    override var prefersStatusBarHidden : Bool {
+//        return showStatusBar
+//    }
     
     // MARK:- Actions -
     
@@ -111,6 +145,12 @@ class MemeEditorViewController: UIViewController {
     // Allows the user to take a new picture using the device camera
     @IBAction func pickAnImageFromCamera(_ sender: Any) {
         pickAnImageFrom(.camera)
+    }
+    
+    // Allows the user to pick an image from a collection of popular memes
+    @IBAction func pickAnImageFromTemplates(_ sender: Any) {
+        let memeTemplatesNavigationController = self.storyboard!.instantiateViewController(withIdentifier: "MemeTemplatesNavigationController")
+        present(memeTemplatesNavigationController, animated: true, completion: nil)
     }
     
     // Opens the acivity view controller
@@ -168,6 +208,11 @@ class MemeEditorViewController: UIViewController {
         updateButtonsUI(didSelectImage)
     }
     
+    @IBAction func showFontAttributesPicker() {
+    
+    
+    }
+    
     @IBAction func dismissMemeEditor() {
         self.dismiss(animated: true, completion: nil)
     }
@@ -222,6 +267,8 @@ class MemeEditorViewController: UIViewController {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = source
+        imagePicker.allowsEditing = true
+        imagePicker.setEditing(true, animated: true)
         imagePicker.modalPresentationStyle = .overCurrentContext
         present(imagePicker, animated: true, completion: nil)
     }
@@ -249,7 +296,7 @@ class MemeEditorViewController: UIViewController {
     /// Create an instance of Meme and append it to the memes array in AppDelegate
     func saveMeme() {
         
-        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image!, memeImage: memedImage!)
+        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image!, memeImage: memedImage!, textAttributes: nil)
         
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
@@ -265,6 +312,25 @@ class MemeEditorViewController: UIViewController {
         self.topTextField.text = meme.topText
         self.bottomTextField.text = meme.bottomText
         self.imageView.image = meme.originalImage
+        
+        // If custom text attributes and text field positions were saved, apply them now
+        if let textAttributes = meme.textAttributes {
+            for textField in self.textFields {
+                textField.defaultTextAttributes = textAttributes.attributesDict()
+            }
+            if let topCenter = textAttributes.topTextFieldCenter {
+                self.topTextField.center = topCenter
+            }
+            if let bottomCenter = textAttributes.bottomTextFieldCenter {
+                self.bottomTextField.center = bottomCenter
+            }
+        }
+    }
+    
+    /// Repositions the text field based on user touch
+    func userDraggedTextField(gesture: UIPanGestureRecognizer){
+        let loc = gesture.location(in: self.view)
+        gesture == topGestureRecognizer ? (self.topTextField.center = loc) : (self.bottomTextField.center = loc)
     }
     
 }
@@ -332,25 +398,4 @@ extension MemeEditorViewController: UITextFieldDelegate {
     }
     
 }
-// MARK:- TODOS
-// TODO:- Gesture Recognizers
 
-/*
- var topGestureRecognizer: UIPanGestureRecognizer!
- var bottomGestureRecognizer: UIPanGestureRecognizer!
- 
-
-let topGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(MemeEditorViewController.userDragged(gesture:)))
-let bottomGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(MemeEditorViewController.userDragged(gesture:)))
-
-topTextField.addGestureRecognizer(topGestureRecognizer)
-topTextField.isUserInteractionEnabled = true
-bottomTextField.addGestureRecognizer(bottomGestureRecognizer)
-bottomTextField.isUserInteractionEnabled = true
- 
- func userDragged(gesture: UIPanGestureRecognizer){
- let loc = gesture.location(in: self.view)
- gesture == topGestureRecognizer ? (self.topTextField.center = loc) : (self.bottomTextField.center = loc)
- }
- 
- */

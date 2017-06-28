@@ -8,13 +8,40 @@
 
 import UIKit
 
+// MARK:- Meme -
+
 struct Meme {
-    
-    // MARK:- Properties -
-    
+
     let topText: String
     let bottomText: String
     let originalImage: UIImage
     let memeImage: UIImage
     
+    // Used to store any custom text attributes set by the user
+    var textAttributes: TextAttributes?
 }
+
+// MARK:- TextAttributes -
+
+struct TextAttributes {
+    
+    var fontName: String
+    var fontSize: CGFloat
+    var fontColor: UIColor
+    var borderWidth: Int
+    var borderColor: UIColor
+    var topTextFieldCenter: CGPoint?
+    var bottomTextFieldCenter: CGPoint?
+    
+    func attributesDict() -> [String: Any] {
+        let attributesDict:[String:Any] = [
+        NSStrokeColorAttributeName : self.borderColor,
+        NSForegroundColorAttributeName: self.fontColor,
+        NSStrokeWidthAttributeName: self.borderWidth,
+        NSFontAttributeName: UIFont(name: self.fontName, size: self.fontSize)!]
+    
+        return attributesDict
+    }
+    
+}
+
