@@ -18,7 +18,7 @@ struct Meme {
     let memeImage: UIImage
     
     // Used to store any custom text attributes set by the user
-    var textAttributes: TextAttributes?
+    var textAttributes: TextAttributes
 }
 
 // MARK:- TextAttributes -
@@ -30,10 +30,12 @@ struct TextAttributes {
     var fontColor: UIColor
     var borderWidth: Int
     var borderColor: UIColor
+    
     var topTextFieldCenter: CGPoint?
     var bottomTextFieldCenter: CGPoint?
     
-    func attributesDict() -> [String: Any] {
+    // Returns a dictionary for creating an NSAttributedString or setting defaultTextAttributes of UITextField
+    func dictionary() -> [String: Any] {
         let attributesDict:[String:Any] = [
         NSStrokeColorAttributeName : self.borderColor,
         NSForegroundColorAttributeName: self.fontColor,

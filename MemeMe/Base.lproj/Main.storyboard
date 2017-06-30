@@ -12,7 +12,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Impact.ttf">
+        <array key="impact.ttf">
             <string>Impact</string>
         </array>
     </customFonts>
@@ -346,26 +346,26 @@
         <!--Meme Settings View Controller-->
         <scene sceneID="3am-0v-XDu">
             <objects>
-                <tableViewController storyboardIdentifier="MemeSettingsViewController" title="FontSettingsTableViewController" id="355-4x-U2u" userLabel="Meme Settings View Controller" customClass="MemeSettingsTableViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MemeSettingsViewController" title="FontSettingsTableViewController" automaticallyAdjustsScrollViewInsets="NO" id="355-4x-U2u" userLabel="Meme Settings View Controller" customClass="MemeSettingsTableViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="KKK-vD-5yG">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
-                            <tableViewSection headerTitle="Preview" id="Hyn-93-nCp">
+                            <tableViewSection id="Hyn-93-nCp">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsTextPreviewCell" rowHeight="150" id="THY-Jn-gXr">
-                                        <rect key="frame" x="0.0" y="55.5" width="375" height="150"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsTextPreviewCell" rowHeight="175" id="THY-Jn-gXr">
+                                        <rect key="frame" x="0.0" y="35" width="375" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="THY-Jn-gXr" id="26E-iY-I2e">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="149.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ImgFlip/Sparta Leonidas.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="zQ8-dK-VMz">
-                                                    <rect key="frame" x="0.0" y="-0.5" width="375" height="149.5"/>
+                                                    <rect key="frame" x="0.0" y="-0.5" width="375" height="175"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jsu-aG-zlm">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="149.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
                                                     <attributedString key="attributedText">
                                                         <fragment>
                                                             <string key="content">THIS IS
@@ -373,46 +373,7 @@ MEME ME!</string>
                                                             <attributes>
                                                                 <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <font key="NSFont" size="40" name="Impact"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
-                                                                    <tabStops>
-                                                                        <textTab alignment="left" location="28">
-                                                                            <options/>
-                                                                        </textTab>
-                                                                        <textTab alignment="left" location="56">
-                                                                            <options/>
-                                                                        </textTab>
-                                                                        <textTab alignment="left" location="84">
-                                                                            <options/>
-                                                                        </textTab>
-                                                                        <textTab alignment="left" location="112">
-                                                                            <options/>
-                                                                        </textTab>
-                                                                        <textTab alignment="left" location="140">
-                                                                            <options/>
-                                                                        </textTab>
-                                                                        <textTab alignment="left" location="168">
-                                                                            <options/>
-                                                                        </textTab>
-                                                                        <textTab alignment="left" location="196">
-                                                                            <options/>
-                                                                        </textTab>
-                                                                        <textTab alignment="left" location="224">
-                                                                            <options/>
-                                                                        </textTab>
-                                                                        <textTab alignment="left" location="252">
-                                                                            <options/>
-                                                                        </textTab>
-                                                                        <textTab alignment="left" location="280">
-                                                                            <options/>
-                                                                        </textTab>
-                                                                        <textTab alignment="left" location="308">
-                                                                            <options/>
-                                                                        </textTab>
-                                                                        <textTab alignment="left" location="336">
-                                                                            <options/>
-                                                                        </textTab>
-                                                                    </tabStops>
-                                                                </paragraphStyle>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
@@ -436,7 +397,7 @@ MEME ME!</string>
                             <tableViewSection headerTitle="Font" id="bmg-m2-Wp0">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SettingsFontTypeCell" textLabel="8KD-Ay-j0B" detailTextLabel="KzF-a1-DWh" style="IBUITableViewCellStyleValue1" id="0EX-W4-xuN">
-                                        <rect key="frame" x="0.0" y="261.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="266" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0EX-W4-xuN" id="IFp-45-FF5">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
@@ -459,11 +420,11 @@ MEME ME!</string>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="7L9-SX-MNZ" kind="show" id="PSH-Gr-fCK"/>
+                                            <segue destination="7L9-SX-MNZ" kind="show" identifier="SelectFontTableViewController" id="PSH-Gr-fCK"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsFontSizeCell" id="3Cc-Mv-nxj">
-                                        <rect key="frame" x="0.0" y="305.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="310" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3Cc-Mv-nxj" id="EQF-Yh-MOo">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -481,8 +442,11 @@ MEME ME!</string>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="aax-U3-z1P">
+                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="40" minimumValue="20" maximumValue="80" stepValue="2" translatesAutoresizingMaskIntoConstraints="NO" id="aax-U3-z1P">
                                                     <rect key="frame" x="266" y="7.5" width="94" height="29"/>
+                                                    <connections>
+                                                        <action selector="fontSizeChanged:" destination="355-4x-U2u" eventType="valueChanged" id="QKh-KK-mJn"/>
+                                                    </connections>
                                                 </stepper>
                                             </subviews>
                                             <constraints>
@@ -498,7 +462,7 @@ MEME ME!</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SettingsFontColorCell" id="f0s-NS-veb">
-                                        <rect key="frame" x="0.0" y="349.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="354" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f0s-NS-veb" id="nhF-rB-xAL">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
@@ -510,19 +474,23 @@ MEME ME!</string>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FG3-TC-lVC">
-                                                    <rect key="frame" x="292" y="7" width="50" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FG3-TC-lVC">
+                                                    <rect key="frame" x="197" y="5" width="137" height="34"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="34" id="7CV-tl-fMN"/>
+                                                    </constraints>
                                                 </view>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="FG3-TC-lVC" firstAttribute="centerY" secondItem="nhF-rB-xAL" secondAttribute="centerY" id="577-U1-lrz"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="FG3-TC-lVC" secondAttribute="trailing" id="Oy7-oC-9Kg"/>
                                                 <constraint firstItem="13H-Mc-pdJ" firstAttribute="leading" secondItem="nhF-rB-xAL" secondAttribute="leading" constant="15" id="T80-o1-VZ9"/>
+                                                <constraint firstItem="FG3-TC-lVC" firstAttribute="width" secondItem="nhF-rB-xAL" secondAttribute="width" multiplier="0.4" id="cU1-fv-8oc"/>
                                                 <constraint firstItem="13H-Mc-pdJ" firstAttribute="centerY" secondItem="nhF-rB-xAL" secondAttribute="centerY" id="udK-Mh-SBx"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="CXJ-Bv-lCM" kind="show" identifier="SelectTextColor" id="wRT-6a-F2P"/>
+                                            <segue destination="CXJ-Bv-lCM" kind="show" identifier="SelectFontColorTableViewController" id="wRT-6a-F2P"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -530,7 +498,7 @@ MEME ME!</string>
                             <tableViewSection headerTitle="Border" id="Ppk-d0-Iqa">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsBorderWidthCell" id="XOG-fN-epn">
-                                        <rect key="frame" x="0.0" y="449.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="454" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XOG-fN-epn" id="yw1-At-JBI">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -548,8 +516,11 @@ MEME ME!</string>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="0NM-xl-vSN">
+                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" maximumValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="0NM-xl-vSN">
                                                     <rect key="frame" x="266" y="7.5" width="94" height="29"/>
+                                                    <connections>
+                                                        <action selector="borderWidthChanged:" destination="355-4x-U2u" eventType="valueChanged" id="oha-fo-lwg"/>
+                                                    </connections>
                                                 </stepper>
                                             </subviews>
                                             <constraints>
@@ -565,7 +536,7 @@ MEME ME!</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SettingsBorderColorCell" id="WDM-rD-ksE">
-                                        <rect key="frame" x="0.0" y="493.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="498" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WDM-rD-ksE" id="9wD-eu-WqU">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
@@ -577,19 +548,23 @@ MEME ME!</string>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e6Q-Rw-JXc">
-                                                    <rect key="frame" x="292" y="7" width="50" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e6Q-Rw-JXc">
+                                                    <rect key="frame" x="196.5" y="5" width="137.5" height="34"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="34" id="Ykd-Dd-PbL"/>
+                                                    </constraints>
                                                 </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Vdd-8b-NDB" firstAttribute="leading" secondItem="9wD-eu-WqU" secondAttribute="leading" constant="15" id="C5p-XD-G1f"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="e6Q-Rw-JXc" secondAttribute="trailing" id="DcC-Mt-1mu"/>
+                                                <constraint firstItem="e6Q-Rw-JXc" firstAttribute="width" secondItem="9wD-eu-WqU" secondAttribute="width" multiplier="0.4" id="Pns-Lz-nUc"/>
+                                                <constraint firstItem="e6Q-Rw-JXc" firstAttribute="centerY" secondItem="9wD-eu-WqU" secondAttribute="centerY" id="Vma-kH-xa4"/>
                                                 <constraint firstItem="Vdd-8b-NDB" firstAttribute="centerY" secondItem="9wD-eu-WqU" secondAttribute="centerY" id="Wvi-jQ-yzB"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="CXJ-Bv-lCM" kind="show" identifier="SelectBorderColor" id="k9F-ra-Dzp"/>
+                                            <segue destination="CXJ-Bv-lCM" kind="show" identifier="SelectBorderColorTableViewController" id="k9F-ra-Dzp"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -597,7 +572,7 @@ MEME ME!</string>
                             <tableViewSection footerTitle="Unlock this setting to move text around the screen" id="TWn-k8-KBb">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsLockTextFieldCell" id="e9Q-cp-ccc">
-                                        <rect key="frame" x="0.0" y="573.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="578" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e9Q-cp-ccc" id="nxU-kB-VCx">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -631,16 +606,31 @@ MEME ME!</string>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Yv8-oH-NDe">
-                        <barButtonItem key="rightBarButtonItem" title="Reset" id="LHa-hL-qQn"/>
+                        <barButtonItem key="rightBarButtonItem" title="Reset" id="LHa-hL-qQn">
+                            <connections>
+                                <action selector="resetTextSettings:" destination="355-4x-U2u" id="j5C-hv-tOu"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="borderColorView" destination="e6Q-Rw-JXc" id="RXS-3U-dvD"/>
+                        <outlet property="borderWidthLabel" destination="qPA-qp-Xu9" id="Skg-XA-k86"/>
+                        <outlet property="borderWidthStepper" destination="0NM-xl-vSN" id="xfA-7v-1MA"/>
+                        <outlet property="fontColorView" destination="FG3-TC-lVC" id="kMo-Ay-sgI"/>
+                        <outlet property="fontSizeLabel" destination="9Y3-ok-ZA6" id="2l6-Vt-Icp"/>
+                        <outlet property="fontSizeStepper" destination="aax-U3-z1P" id="i5L-WK-3I1"/>
+                        <outlet property="settingsBorderColorCell" destination="WDM-rD-ksE" id="Twc-Nf-OOV"/>
+                        <outlet property="settingsBorderWidthCell" destination="XOG-fN-epn" id="YWH-gr-Jjo"/>
+                        <outlet property="settingsFontColorCell" destination="f0s-NS-veb" id="Rl3-tM-8rv"/>
+                        <outlet property="settingsFontSizeCell" destination="3Cc-Mv-nxj" id="abn-FP-tuW"/>
+                        <outlet property="settingsFontTypeCell" destination="0EX-W4-xuN" id="12w-TC-4J3"/>
                         <outlet property="textFieldsLockSwitch" destination="H3V-oC-ftO" id="fho-yh-wE0"/>
                         <outlet property="textPreviewLabel" destination="Jsu-aG-zlm" id="wX2-L1-HRI"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eqp-dX-fH6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2786" y="-1281"/>
+            <point key="canvasLocation" x="2784.8000000000002" y="-1281.4092953523239"/>
         </scene>
         <!--Select Color-->
         <scene sceneID="wCt-2y-iWg">
@@ -651,7 +641,7 @@ MEME ME!</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SelectColorTableViewCell" id="dy6-K2-W9Z">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SelectColorTableViewCell" id="dy6-K2-W9Z" customClass="SelectColorTableViewCell" customModule="MemeMe" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dy6-K2-W9Z" id="PtN-kE-9aG">
@@ -673,13 +663,13 @@ MEME ME!</string>
         <!--Select Font-->
         <scene sceneID="zpW-2i-Iaa">
             <objects>
-                <tableViewController title="Select Font" id="7L9-SX-MNZ" customClass="SelectFontTableViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Select Font" automaticallyAdjustsScrollViewInsets="NO" id="7L9-SX-MNZ" customClass="SelectFontTableViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="YiT-eT-sCs">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SelectFontTableViewCell" textLabel="h7s-du-kLE" style="IBUITableViewCellStyleDefault" id="e7F-SO-RJz">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="SelectFontTableViewCell" textLabel="h7s-du-kLE" style="IBUITableViewCellStyleDefault" id="e7F-SO-RJz" customClass="SelectFontTableViewCell" customModule="MemeMe" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e7F-SO-RJz" id="NES-BJ-EC7">

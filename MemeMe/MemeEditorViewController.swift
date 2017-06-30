@@ -41,11 +41,11 @@ class MemeEditorViewController: UIViewController {
     var defaultTopTextFieldCenter: CGPoint!
     var defaultBottomTextFieldCenter: CGPoint!
     var isTextFieldPositionLocked: Bool = true
-    var textFieldsPositionDidChange: Bool = false
     
     var fontsArray = [String]()
     
     var customTextAttributes: TextAttributes?
+    var textAttributes: TextAttributes = Constants.defaultTextAttributes
     
 //    var defaultTextAttributes
     
@@ -58,13 +58,6 @@ class MemeEditorViewController: UIViewController {
         
         // Disable share and cancel button when the view first loads
         updateButtonsUI(didSelectImage)
-
-        // Set textfields delegate and appearance
-        for textfield in textFields {
-            textfield.delegate = self
-            textfield.defaultTextAttributes = Constants.defaultTextAttributes.attributesDict()
-            textfield.textAlignment = .center
-        }
         
         topTextField.text = "TOP"
         bottomTextField.text = "BOTTOM"
@@ -99,19 +92,17 @@ class MemeEditorViewController: UIViewController {
         // If MemeEditor is opened to edit a meme, load it up
         if memeToEdit != nil {
             loadSavedMemeInEditor(memeToEdit)
-            if memeToEdit.textAttributes != nil {
-                print("MemeEditorVC: viewWillAppear: MemeToEdit: Setting custom text attributes.")
-                self.customTextAttributes = memeToEdit.textAttributes
-            }
+            print("MemeEditorVC: viewWillAppear: Loading MemeToEdit and setting custom text attributes.")
+            self.textAttributes = memeToEdit.textAttributes
             didSelectImage = true
         }
         
-        // If user set custom text attributes, apply them now
-        if (customTextAttributes != nil) {
-            print("MemeEditorVC: viewWillAppear: Setting custom text attributes.")
-            for textField in textFields {
-                textField.defaultTextAttributes = customTextAttributes!.attributesDict()
-            }
+        // Apply text attributes
+        // Set textfields delegate and appearance
+        for textfield in textFields {
+            textfield.delegate = self
+            textfield.defaultTextAttributes = textAttributes.dictionary()
+            textfield.textAlignment = .center
         }
         
         // If a meme image was selected from templates or an existing meme, update buttons UI
@@ -302,7 +293,7 @@ class MemeEditorViewController: UIViewController {
     /// Create an instance of Meme and append it to the memes array in AppDelegate
     func saveMeme() {
         
-        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image!, memeImage: memedImage!, textAttributes: nil)
+        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image!, memeImage: memedImage!, textAttributes: textAttributes)
         
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
@@ -319,10 +310,9 @@ class MemeEditorViewController: UIViewController {
         self.bottomTextField.text = meme.bottomText
         self.imageView.image = meme.originalImage
         
-        // If custom text attributes and text field positions were saved, apply them now
-        if let textAttributes = meme.textAttributes {
+        // Set text attributes and custom text field positions (if available)
             for textField in self.textFields {
-                textField.defaultTextAttributes = textAttributes.attributesDict()
+                textField.defaultTextAttributes = meme.textAttributes.dictionary()
             }
             if let topCenter = textAttributes.topTextFieldCenter {
                 self.topTextField.center = topCenter
@@ -330,13 +320,15 @@ class MemeEditorViewController: UIViewController {
             if let bottomCenter = textAttributes.bottomTextFieldCenter {
                 self.bottomTextField.center = bottomCenter
             }
-        }
+        
     }
     
-    /// Repositions the text field based on user touch
+    /// Repositions the text field based on user touch (if position is unlocked)
     func userDraggedTextField(gesture: UIPanGestureRecognizer){
-        let loc = gesture.location(in: self.view)
-        gesture == topGestureRecognizer ? (self.topTextField.center = loc) : (self.bottomTextField.center = loc)
+        if !isTextFieldPositionLocked {
+            let loc = gesture.location(in: self.view)
+            gesture == topGestureRecognizer ? (self.topTextField.center = loc) : (self.bottomTextField.center = loc)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -345,11 +337,7 @@ class MemeEditorViewController: UIViewController {
             
             // Retain reference to the instance of meme editor view controller
             memeSettingsVC.memeEditorVC = self
-            
-            // If custom attributes were set, load them up in settings
-            if self.customTextAttributes != nil {
-                memeSettingsVC.customTextAttributes = self.customTextAttributes
-            }
+            memeSettingsVC.textAttributes = self.textAttributes
         }
     }
     
