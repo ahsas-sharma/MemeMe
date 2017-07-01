@@ -34,7 +34,12 @@ class SelectColorTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("Setting Color for :\(settingColorFor)")
+        switch settingColorFor! {
+        case .border:
+            self.title = "Set Border Color"
+        case .font:
+            self.title = "Set Font Color"
+        }
         
     }
     
@@ -75,17 +80,17 @@ class SelectColorTableViewController: UITableViewController {
         switch settingColorFor! {
         case .border:
            if cell.color == selectedBorderColor {
-                toggleCellUIOnSelect(cell: cell, select: true)
+                cell.checkmarkImageView.isHidden = false
                 lastBorderColorSelectionIndexPath = indexPath
             } else {
-                toggleCellUIOnSelect(cell: cell, select: false)
+                cell.checkmarkImageView.isHidden = true
             }
         case .font:
             if cell.color == selectedFontColor {
-                toggleCellUIOnSelect(cell: cell, select: true)
+                cell.checkmarkImageView.isHidden = false
                 lastFontColorSelectionIndexPath = indexPath
             } else {
-                toggleCellUIOnSelect(cell: cell, select: false)
+                cell.checkmarkImageView.isHidden = true
             }
         }
     }
@@ -96,58 +101,39 @@ class SelectColorTableViewController: UITableViewController {
         switch settingColorFor! {
         case .border:
             if let lastBorderColorSelectionIndexPath = lastBorderColorSelectionIndexPath {
-                tableView.deselectRow(at: lastBorderColorSelectionIndexPath, animated: true)
-
-                if let lastSelectedCell = tableView.cellForRow(at: lastBorderColorSelectionIndexPath) {
-                    self.toggleCellUIOnSelect(cell: lastSelectedCell, select: false)
-                }
                 
                 if indexPath == lastBorderColorSelectionIndexPath {
                     return
+                } else {
+                    tableView.deselectRow(at: lastBorderColorSelectionIndexPath, animated: true)
+                    if let lastSelectedCell = tableView.cellForRow(at: lastBorderColorSelectionIndexPath) as? SelectColorTableViewCell {
+                        lastSelectedCell.checkmarkImageView.isHidden = true
+                    }
                 }
             }
-            self.toggleCellUIOnSelect(cell: newSelectioncell, select: true)
+            newSelectioncell.checkmarkImageView.isHidden = false
             selectedBorderColor = newSelectioncell.color
             lastBorderColorSelectionIndexPath = indexPath
             
         case .font:
             if let lastFontColorSelectionIndexPath = lastFontColorSelectionIndexPath {
-                tableView.deselectRow(at: lastFontColorSelectionIndexPath, animated: true)
-                
-                if let lastSelectedCell = tableView.cellForRow(at: lastFontColorSelectionIndexPath) {
-                    self.toggleCellUIOnSelect(cell: lastSelectedCell, select: false)
-                }
-                
+               
                 if indexPath == lastFontColorSelectionIndexPath {
                     return
+                } else {
+                    tableView.deselectRow(at: lastFontColorSelectionIndexPath, animated: true)
+                    
+                    if let lastSelectedCell = tableView.cellForRow(at: lastFontColorSelectionIndexPath) as? SelectColorTableViewCell {
+                        lastSelectedCell.checkmarkImageView.isHidden = true
+                    }
                 }
             }
-            self.toggleCellUIOnSelect(cell: newSelectioncell, select: true)
+            
+            newSelectioncell.checkmarkImageView.isHidden = false
             selectedFontColor = newSelectioncell.color
             lastFontColorSelectionIndexPath = indexPath
         }
         
     }
-//    
-//    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-//        let cell = tableView.cellForRow(at: indexPath)
-//        toggleCellUIOnSelect(cell: cell!, select: false)
-//    }
-    
-    // MARK: - Helper
-    
-    func toggleCellUIOnSelect(cell: UITableViewCell, select: Bool) {
-        if select {
-            cell.layer.borderColor = UIColor.black.cgColor
-            cell.layer.borderWidth = 5.0
-            cell.layer.cornerRadius = 20.0
-        } else {
-            cell.layer.borderColor = UIColor.clear.cgColor
-            cell.layer.borderWidth = 0.0
-            cell.layer.cornerRadius = 0.0
-
-        }
-    }
-
 
 }

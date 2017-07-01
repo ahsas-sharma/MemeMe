@@ -12,7 +12,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="impact.ttf">
+        <array key="unicode.impact.ttf">
             <string>Impact</string>
         </array>
     </customFonts>
@@ -58,13 +58,13 @@
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </toolbar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="TOP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kza-Yl-Zc0">
-                                <rect key="frame" x="16" y="20" width="343" height="49"/>
+                                <rect key="frame" x="16" y="20" width="343" height="38"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="40"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="BOTTOM" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6cl-pP-alt">
-                                <rect key="frame" x="16" y="490" width="343" height="49"/>
+                                <rect key="frame" x="16" y="501" width="343" height="38"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="40"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
@@ -135,7 +135,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" itemPositioning="fill" id="lxK-Qs-EeJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
                         <segue destination="9cb-ef-iB4" kind="relationship" relationship="viewControllers" id="3uw-MW-bLU"/>
@@ -152,7 +152,7 @@
                 <navigationController title="Navigation - List" automaticallyAdjustsScrollViewInsets="NO" id="9cb-ef-iB4" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="List" image="list" selectedImage="list_filled" id="Sy3-ec-rqx"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="bvY-kq-ZEh">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bvY-kq-ZEh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -172,13 +172,13 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" id="XwD-86-oHr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.111818932" green="0.11183650050000001" blue="0.1118125319" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SentMemesTableViewCell" id="Fas-85-juw" customClass="SentMemesTableViewCell" customModule="MemeMe" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fas-85-juw" id="urZ-Mb-28q">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2N6-bg-W6p">
@@ -284,7 +284,7 @@
         <scene sceneID="NJU-8X-RzW">
             <objects>
                 <collectionViewController storyboardIdentifier="MemeTemplatesCollectionViewController" title="Templates" id="eBx-UJ-5xR" customClass="MemeTemplatesCollectionViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="KRI-e9-s79">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="KRI-e9-s79">
                         <rect key="frame" x="0.0" y="94" width="375" height="573"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uhM-CY-5fl">
@@ -358,7 +358,7 @@
                                         <rect key="frame" x="0.0" y="35" width="375" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="THY-Jn-gXr" id="26E-iY-I2e">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ImgFlip/Sparta Leonidas.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="zQ8-dK-VMz">
@@ -427,7 +427,7 @@ MEME ME!</string>
                                         <rect key="frame" x="0.0" y="310" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3Cc-Mv-nxj" id="EQF-Yh-MOo">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Size" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mmb-gY-9Ea">
@@ -461,11 +461,11 @@ MEME ME!</string>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SettingsFontColorCell" id="f0s-NS-veb">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SettingsFontColorCell" id="f0s-NS-veb" customClass="SettingsFontColorTableViewCell" customModule="MemeMe" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="354" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f0s-NS-veb" id="nhF-rB-xAL">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Color" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="13H-Mc-pdJ">
@@ -490,6 +490,7 @@ MEME ME!</string>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="colorView" destination="FG3-TC-lVC" id="jbx-uo-xz5"/>
                                             <segue destination="CXJ-Bv-lCM" kind="show" identifier="SelectFontColorTableViewController" id="wRT-6a-F2P"/>
                                         </connections>
                                     </tableViewCell>
@@ -501,7 +502,7 @@ MEME ME!</string>
                                         <rect key="frame" x="0.0" y="454" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XOG-fN-epn" id="yw1-At-JBI">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Width" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTX-dK-zwA">
@@ -535,11 +536,11 @@ MEME ME!</string>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SettingsBorderColorCell" id="WDM-rD-ksE">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SettingsBorderColorCell" id="WDM-rD-ksE" customClass="SettingsBorderColorTableViewCell" customModule="MemeMe" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="498" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WDM-rD-ksE" id="9wD-eu-WqU">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Color" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vdd-8b-NDB">
@@ -564,6 +565,7 @@ MEME ME!</string>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="colorView" destination="e6Q-Rw-JXc" id="YaR-8a-Bwj"/>
                                             <segue destination="CXJ-Bv-lCM" kind="show" identifier="SelectBorderColorTableViewController" id="k9F-ra-Dzp"/>
                                         </connections>
                                     </tableViewCell>
@@ -575,7 +577,7 @@ MEME ME!</string>
                                         <rect key="frame" x="0.0" y="578" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e9Q-cp-ccc" id="nxU-kB-VCx">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lock textfield position" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7tu-nw-3Dy">
@@ -619,10 +621,6 @@ MEME ME!</string>
                         <outlet property="fontColorView" destination="FG3-TC-lVC" id="kMo-Ay-sgI"/>
                         <outlet property="fontSizeLabel" destination="9Y3-ok-ZA6" id="2l6-Vt-Icp"/>
                         <outlet property="fontSizeStepper" destination="aax-U3-z1P" id="i5L-WK-3I1"/>
-                        <outlet property="settingsBorderColorCell" destination="WDM-rD-ksE" id="Twc-Nf-OOV"/>
-                        <outlet property="settingsBorderWidthCell" destination="XOG-fN-epn" id="YWH-gr-Jjo"/>
-                        <outlet property="settingsFontColorCell" destination="f0s-NS-veb" id="Rl3-tM-8rv"/>
-                        <outlet property="settingsFontSizeCell" destination="3Cc-Mv-nxj" id="abn-FP-tuW"/>
                         <outlet property="settingsFontTypeCell" destination="0EX-W4-xuN" id="12w-TC-4J3"/>
                         <outlet property="textFieldsLockSwitch" destination="H3V-oC-ftO" id="fho-yh-wE0"/>
                         <outlet property="textPreviewLabel" destination="Jsu-aG-zlm" id="wX2-L1-HRI"/>
@@ -636,7 +634,7 @@ MEME ME!</string>
         <scene sceneID="wCt-2y-iWg">
             <objects>
                 <tableViewController title="Select Color" id="CXJ-Bv-lCM" customClass="SelectColorTableViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="uS7-FD-Fwo">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="uS7-FD-Fwo">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -645,9 +643,26 @@ MEME ME!</string>
                                 <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dy6-K2-W9Z" id="PtN-kE-9aG">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="bhJ-cn-aQ7">
+                                            <rect key="frame" x="165.5" y="8" width="44" height="44"/>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="44" id="vGQ-UT-zRm"/>
+                                                <constraint firstAttribute="height" constant="44" id="z09-m0-OJ9"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="bhJ-cn-aQ7" firstAttribute="centerY" secondItem="PtN-kE-9aG" secondAttribute="centerY" id="Qf6-Yl-P79"/>
+                                        <constraint firstItem="bhJ-cn-aQ7" firstAttribute="centerX" secondItem="PtN-kE-9aG" secondAttribute="centerX" id="Szi-nT-Lrx"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="checkmarkImageView" destination="bhJ-cn-aQ7" id="shy-19-ldU"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -703,7 +718,7 @@ MEME ME!</string>
                 <navigationController title="Navigation - Grid" automaticallyAdjustsScrollViewInsets="NO" id="elm-T1-vR1" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Grid" image="grid" selectedImage="grid_filled" id="Oyg-bj-TeZ"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="csy-SC-5CJ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="csy-SC-5CJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -720,7 +735,7 @@ MEME ME!</string>
         <scene sceneID="WwS-ba-1b1">
             <objects>
                 <collectionViewController title="Sent Memes - Grid" id="A9h-QF-CIc" customClass="SentMemesCollectionViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="tsl-QN-PUN">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="tsl-QN-PUN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -774,7 +789,7 @@ MEME ME!</string>
             <objects>
                 <navigationController storyboardIdentifier="MemeTemplatesNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="vLX-d2-RLM" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="kmz-ki-rAD">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="kmz-ki-rAD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -793,7 +808,7 @@ MEME ME!</string>
             <objects>
                 <navigationController storyboardIdentifier="MemeEditorNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="W93-04-x9t" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Uhy-69-GU8">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Uhy-69-GU8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -810,6 +825,7 @@ MEME ME!</string>
     </scenes>
     <resources>
         <image name="ImgFlip/Sparta Leonidas.jpg" width="16" height="16"/>
+        <image name="checkmark" width="16" height="16"/>
         <image name="fire" width="16" height="16"/>
         <image name="grid" width="16" height="16"/>
         <image name="grid_filled" width="16" height="16"/>

@@ -13,6 +13,7 @@ class SentMemesTableViewController: UITableViewController {
     //TODO: - Add a "swipe to delete” function to your table view to allow users to delete a meme.
 
     var memes = [Meme]()
+    var emptyView: EmptyDataSetView = EmptyDataSetView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +27,13 @@ class SentMemesTableViewController: UITableViewController {
         memes = appDelegate.memes
         
         tableView.reloadData()
+        
+        if memes.count == 0 {
+            print("Should show emptyView")
+            self.showEmptyView()
+        } else {
+            self.hideEmptyView()
+        }
         
     }
     
@@ -58,6 +66,19 @@ class SentMemesTableViewController: UITableViewController {
         
         // Use tabBarController to present the editor otherwise tab and navigation bars appear on top. Since the back button is not required and instead cancel button is used to dismiss the editor, the MemeEditorViewController is presented modally.
         self.tabBarController?.present(memeEditorVC, animated: true, completion: nil)
+    }
+    
+    // MARK: - Empty Data Set View
+
+    func showEmptyView() {
+        self.navigationController?.view.addSubview(emptyView)
+        emptyView.isHidden = false
+        self.navigationController?.view.bringSubview(toFront: emptyView)
+    }
+    
+    func hideEmptyView() {
+        emptyView.isHidden = true
+        self.navigationController?.view.sendSubview(toBack: emptyView)
     }
 
     

@@ -9,15 +9,8 @@
 import UIKit
 
 class MemeSettingsTableViewController: UITableViewController {
-
-
     
-    @IBOutlet weak var settingsFontTypeCell: UITableViewCell!
-    @IBOutlet weak var settingsFontSizeCell: UITableViewCell!
-    @IBOutlet weak var settingsFontColorCell: UITableViewCell!
-    @IBOutlet weak var settingsBorderWidthCell: UITableViewCell!
-    @IBOutlet weak var settingsBorderColorCell: UITableViewCell!
-    
+    @IBOutlet weak var settingsFontTypeCell: UITableViewCell!    
     @IBOutlet weak var fontSizeStepper: UIStepper!
     @IBOutlet weak var borderWidthStepper: UIStepper!
     @IBOutlet weak var textPreviewLabel: UILabel!
@@ -40,14 +33,24 @@ class MemeSettingsTableViewController: UITableViewController {
             view?.layer.borderWidth = 1.0
             view?.layer.borderColor = UIColor.lightGray.cgColor
         }
+        
+        fontColorView.addObserver(self, forKeyPath: "backgroundColor", options: .new, context: nil)
     }
 
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        print(change as Any)
+    }
+    
+    deinit {
+        fontColorView.removeObserver(self, forKeyPath: "backgroundColor")
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         updateCellLabelsAndViews(with: textAttributes)
-        print("textAttributes: fontColor: \(String(describing: textAttributes.fontColor.cgColor.components))")
-        print("fontColorView: fontColor: \(String(describing: fontColorView.backgroundColor?.cgColor.components))")
+        print("textAttributes: fontColor: \(String(describing: textAttributes.fontColor))")
+        print("fontColorView: fontColor: \(String(describing: fontColorView.backgroundColor))")
 
         updatePreviewTextLabel()
 
@@ -111,7 +114,7 @@ class MemeSettingsTableViewController: UITableViewController {
         updatePreviewTextLabel()
     }
     
-    // MARK: - Helper
+    // MARK: - Helper Functions
     
     func updatePreviewTextLabel() {
          textPreviewLabel.attributedText = NSAttributedString(string: Constants.previewText, attributes: textAttributes.dictionary())
@@ -123,19 +126,6 @@ class MemeSettingsTableViewController: UITableViewController {
         fontColorView.backgroundColor = attributes.fontColor
         borderWidthLabel.text = String(describing: abs(attributes.borderWidth))
         borderColorView.backgroundColor = attributes.borderColor
-    }
-    // MARK: - Table View Delegate
-    
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if cell == settingsFontColorCell {
-            print("WillDisplay SettingsFontColorCell")
-            fontColorView.backgroundColor = self.textAttributes.fontColor
-            cell.layoutSubviews()
-        }
-        if cell == settingsBorderColorCell {
-            print("WillDisplay SettingsBorderColorCell")
-            borderColorView.backgroundColor = self.textAttributes.borderColor
-        }
     }
 
 }
