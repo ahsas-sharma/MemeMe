@@ -43,7 +43,6 @@ struct Constants {
     
         static let blackDark = UIColor.init(red: 29/255, green: 29/255, blue: 29/255, alpha: 1.0)
         static let blackLight = UIColor.init(red: 32/255, green: 32/255, blue: 32/255, alpha: 1.0)
-
         static let white = UIColor.white
         
         // Flat UI colors (rgba values taken from https://www.materialui.co/flatuicolors)

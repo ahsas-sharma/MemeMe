@@ -19,6 +19,15 @@ struct Meme {
     
     // Used to store any custom text attributes set by the user
     var textAttributes: TextAttributes
+    
+    static func saveMeme(topTextField: UITextField, bottomTextField: UITextField, originalImage: UIImage, memeImage: UIImage, textAttributes: TextAttributes) {
+        
+         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: originalImage, memeImage: memeImage, textAttributes: textAttributes)
+        
+        let object = UIApplication.shared.delegate
+        let appDelegate = object as! AppDelegate
+        appDelegate.memes.append(meme)
+    }
 }
 
 // MARK:- TextAttributes -

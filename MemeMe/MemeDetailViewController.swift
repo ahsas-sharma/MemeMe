@@ -10,6 +10,8 @@ import UIKit
 
 class MemeDetailViewController: UIViewController {
     
+    // MARK: - Outlets and Properties -
+    
     @IBOutlet weak var imageView: UIImageView!
     
     var meme: Meme!
@@ -19,6 +21,8 @@ class MemeDetailViewController: UIViewController {
     var navBarFrame: CGRect!
     
  
+    // MARK: - View Lifecycle -
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let editButton = UIBarButtonItem.init(barButtonSystemItem: .edit, target: self, action: #selector(openMemeInEditor))
@@ -30,13 +34,11 @@ class MemeDetailViewController: UIViewController {
         imageView.image = meme.memeImage
     }
     
-    // TODO:- When an edited image is being saved, remove the previous copy by holding reference to the index of element in [Meme]
     func openMemeInEditor() {
-        let memeEditorNavigationController = self.storyboard!.instantiateViewController(withIdentifier: "MemeEditorNavigationController") as! UINavigationController
-        let memeEditorVC = memeEditorNavigationController.viewControllers.first as! MemeEditorViewController
-        memeEditorVC.memeToEdit = meme
-        self.tabBarController?.present(memeEditorNavigationController, animated: true, completion: nil)
+        ControllerUtils.presentMemeEditorViewController(fromStoryboard: self.storyboard!, presentor: self.tabBarController!, withMeme: meme)
     }
+    
+    // MARK: - Actions -
     
     @IBAction func imageTapped(_ sender: UITapGestureRecognizer) {
         let imageView = sender.view as! UIImageView
@@ -69,6 +71,8 @@ class MemeDetailViewController: UIViewController {
             
         }
     }
+    
+    // MARK: - Helper -
     
     override var prefersStatusBarHidden: Bool {
         return navigationController?.isNavigationBarHidden == true

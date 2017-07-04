@@ -14,6 +14,7 @@
                 <outlet property="contentView" destination="iN0-l3-epB" id="Aga-GA-LhG"/>
                 <outlet property="doubleMemeLabel" destination="ra7-pA-1xh" id="Dia-xc-nfz"/>
                 <outlet property="emptyImageView" destination="H1n-sT-Tlz" id="TqI-g8-suY"/>
+                <outlet property="explosionImageView" destination="SEv-Mb-VYc" id="wJB-3D-YeX"/>
                 <outlet property="tapAboveLabel" destination="Idt-gB-rZR" id="wtg-v1-ofm"/>
             </connections>
         </placeholder>
@@ -38,16 +39,23 @@ YOU!</string>
                     <size key="shadowOffset" width="0.0" height="0.0"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Idt-gB-rZR">
-                    <rect key="frame" x="291.5" y="10" width="73.5" height="107.5"/>
+                    <rect key="frame" x="310.5" y="10" width="54.5" height="72"/>
                     <string key="text">👆
-Tap 
-Here</string>
-                    <fontDescription key="fontDescription" type="system" weight="black" pointSize="30"/>
+TAP 
+HERE</string>
+                    <fontDescription key="fontDescription" type="system" weight="black" pointSize="20"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                     <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <size key="shadowOffset" width="0.0" height="0.0"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SEv-Mb-VYc" userLabel="Explosion Image View">
+                    <rect key="frame" x="165" y="10" width="200" height="200"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="200" id="Pt2-F5-Bow"/>
+                        <constraint firstAttribute="height" constant="200" id="w8t-ze-BO6"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -59,6 +67,8 @@ Here</string>
                 <constraint firstAttribute="trailing" secondItem="H1n-sT-Tlz" secondAttribute="trailing" id="Pls-jR-KpU"/>
                 <constraint firstItem="ra7-pA-1xh" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="SCK-Ld-yti"/>
                 <constraint firstItem="Idt-gB-rZR" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="VvJ-PO-adC"/>
+                <constraint firstAttribute="trailing" secondItem="SEv-Mb-VYc" secondAttribute="trailing" constant="10" id="nRY-68-pSl"/>
+                <constraint firstItem="SEv-Mb-VYc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="vUP-nd-ELb"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>

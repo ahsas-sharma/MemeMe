@@ -9,11 +9,12 @@
 import UIKit
 
 class EmptyDataSetView : UIView {
+    
     @IBOutlet weak var emptyImageView: UIImageView!
     @IBOutlet weak var tapAboveLabel: UILabel!
     @IBOutlet weak var doubleMemeLabel: UILabel!
     @IBOutlet weak var contentView: UIView!
-    
+    @IBOutlet weak var explosionImageView: UIImageView!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -32,7 +33,7 @@ class EmptyDataSetView : UIView {
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-
+        tapAboveLabel.isHidden = true
     }
 
   

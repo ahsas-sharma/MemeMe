@@ -23,56 +23,58 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="idareu" translatesAutoresizingMaskIntoConstraints="NO" id="avU-ps-gLS">
-                                <rect key="frame" x="0.0" y="44" width="320" height="387"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R2y-2Y-77B">
-                                <rect key="frame" x="10" y="120.5" width="300" height="239"/>
-                                <string key="text">I
-DOUBLE
-MEME
-YOU!</string>
-                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="50"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                                <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <size key="shadowOffset" width="0.0" height="0.0"/>
-                            </label>
-                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FZh-QL-ktV">
+                            <tabBar contentMode="scaleToFill" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FZh-QL-ktV">
                                 <rect key="frame" x="0.0" y="431" width="320" height="49"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <items>
                                     <tabBarItem title="List" image="list" selectedImage="list_filled" id="nKq-lJ-HhV"/>
                                     <tabBarItem title="Grid" image="grid" selectedImage="grid_filled" id="3Ej-xR-M5q"/>
                                 </items>
+                                <color key="barTintColor" red="0.12637259066104889" green="0.12639245390892029" blue="0.12636536359786987" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tabBar>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Mr-RD-0wG">
+                            <navigationBar contentMode="scaleToFill" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Mr-RD-0wG">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="4HD-Ic-TW6"/>
                                 </constraints>
+                                <color key="barTintColor" red="0.11181893199682236" green="0.1118365004658699" blue="0.1118125319480896" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <navigationItem title="Sent Memes" id="ifR-Kc-kUT">
-                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="x2w-2t-yKB"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="x2w-2t-yKB">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o0y-MH-TTa">
+                                <rect key="frame" x="255.5" y="74" width="54.5" height="72"/>
+                                <string key="text">👆
+TAP
+HERE</string>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <size key="shadowOffset" width="0.0" height="0.0"/>
+                            </label>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="R2y-2Y-77B" secondAttribute="trailing" constant="10" id="12J-B8-ZMP"/>
-                            <constraint firstItem="R2y-2Y-77B" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Dqz-Kt-8aj"/>
                             <constraint firstItem="2Mr-RD-0wG" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="E0f-If-QVU"/>
                             <constraint firstAttribute="trailing" secondItem="FZh-QL-ktV" secondAttribute="trailing" id="K0y-CL-w9j"/>
                             <constraint firstAttribute="trailing" secondItem="avU-ps-gLS" secondAttribute="trailing" id="LWq-Wx-bee"/>
                             <constraint firstItem="avU-ps-gLS" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="Prv-Di-SJ6"/>
-                            <constraint firstItem="R2y-2Y-77B" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="10" id="YBb-E7-Z8E"/>
-                            <constraint firstItem="R2y-2Y-77B" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Z8Z-Fg-MFP"/>
-                            <constraint firstItem="avU-ps-gLS" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" constant="44" id="hLO-1G-ah8"/>
+                            <constraint firstItem="o0y-MH-TTa" firstAttribute="top" secondItem="2Mr-RD-0wG" secondAttribute="bottom" constant="10" id="RTD-Ih-fK8"/>
+                            <constraint firstItem="avU-ps-gLS" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" id="hLO-1G-ah8"/>
                             <constraint firstItem="FZh-QL-ktV" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="hct-0b-3eR"/>
                             <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="FZh-QL-ktV" secondAttribute="bottom" id="kkF-E5-7kE"/>
                             <constraint firstItem="2Mr-RD-0wG" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="rcd-O9-RzA"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="avU-ps-gLS" secondAttribute="bottom" constant="49" id="tAV-VS-E4C"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="avU-ps-gLS" secondAttribute="bottom" id="tAV-VS-E4C"/>
                             <constraint firstAttribute="trailing" secondItem="2Mr-RD-0wG" secondAttribute="trailing" id="wHk-AG-1Za"/>
+                            <constraint firstAttribute="trailing" secondItem="o0y-MH-TTa" secondAttribute="trailing" constant="10" id="yqM-Tg-TBJ"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
