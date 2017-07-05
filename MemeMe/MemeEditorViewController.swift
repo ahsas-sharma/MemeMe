@@ -18,9 +18,7 @@ class MemeEditorViewController: UIViewController {
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet var textFields: [UITextField]!
-    
-    @IBOutlet weak var navbarHeightConstraint: NSLayoutConstraint!
-    
+        
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var resetButton: UIBarButtonItem!
@@ -32,7 +30,6 @@ class MemeEditorViewController: UIViewController {
     
     var didSelectImage: Bool = false
     var memedImage: UIImage?
-    var showStatusBar: Bool = true
     var memeToEdit: Meme!
     
     var topGestureRecognizer: UIPanGestureRecognizer!
@@ -115,7 +112,7 @@ class MemeEditorViewController: UIViewController {
     
     // Adjusts the navigation bar height based on the orientation (as status bar is hidden in landscape mode on phone)
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        if UIDevice.current.orientation.isLandscape && UIDevice.current.userInterfaceIdiom == .phone {
+        if UIDevice.current.orientation.isLandscape {
             self.navigationController?.navigationBar.frame.size.height = 44
         } else {
             self.navigationController?.navigationBar.frame.size.height = 64
@@ -237,19 +234,39 @@ class MemeEditorViewController: UIViewController {
     /// Returns a UIImage object generated from the current view
     func generateMemedImage() -> UIImage {
         
+        print("initial self.view.frame : \(self.view.frame)")
+        print("initial self.view.frame.size : \(self.view.frame.size)")
+
         // Hide toolbar and navbar
-        self.navigationController?.navigationBar.isHidden = true
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.toolbar.isHidden = true
+        self.view.layoutIfNeeded()
+        // A cur
+        for textField in textFields {
+            textField.frame.origin.y -= 20
+        }
         
+        print("self.vew.frame after hiding: \(self.view.frame)")
+        print("self.view.frame.size after hiding: \(self.view.frame.size)")
+
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
         let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
+        for textField in textFields {
+            textField.frame.origin.y += 20
+        }
+        
         // Show toolbar and navbar
-        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.toolbar.isHidden = false
+        self.view.layoutIfNeeded()
+
+        
+        print("final self.view.frame : \(self.view.frame)")
+        print("final self.view.frame.size : \(self.view.frame.size)")
         
         return memedImage
     }
@@ -300,6 +317,14 @@ class MemeEditorViewController: UIViewController {
             memeSettingsVC.memeEditorVC = self
             memeSettingsVC.textAttributes = self.textAttributes
         }
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return navigationController?.isNavigationBarHidden == true
+    }
+    
+    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+        return UIStatusBarAnimation.slide
     }
 }
 
@@ -358,10 +383,10 @@ extension MemeEditorViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-//        if textField == self.bottomTextField {
-//            self.showStatusBar = true
-//            setNeedsStatusBarAppearanceUpdate()
-//        }
+        // If text field returns with empty string, reset to default text
+        if textField.text == "" {
+            textField == topTextField ? (textField.text = "TOP") : (textField.text = "BOTTOM")
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -419,4 +444,9 @@ extension MemeEditorViewController: UITextFieldDelegate {
  }
  
 
+ 
+ UIGraphicsBeginImageContext(self.view.frame.size)
+ view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+ let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+ UIGraphicsEndImageContext()
 */

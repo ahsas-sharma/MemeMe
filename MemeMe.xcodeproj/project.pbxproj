@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		8911C4631F0B695100E259DE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8911C4621F0B695100E259DE /* Extensions.swift */; };
-		8911C4651F0B6E0E00E259DE /* BlurredBars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8911C4641F0B6E0E00E259DE /* BlurredBars.swift */; };
 		8916CFEE1EFA5217003D4457 /* SentMemesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8916CFEA1EFA5217003D4457 /* SentMemesListViewController.swift */; };
 		8916CFEF1EFA5217003D4457 /* SentMemesGridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8916CFEB1EFA5217003D4457 /* SentMemesGridViewController.swift */; };
 		8916CFF01EFA5217003D4457 /* SentMemesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8916CFEC1EFA5217003D4457 /* SentMemesTableViewCell.swift */; };
@@ -37,7 +36,6 @@
 
 /* Begin PBXFileReference section */
 		8911C4621F0B695100E259DE /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		8911C4641F0B6E0E00E259DE /* BlurredBars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurredBars.swift; sourceTree = "<group>"; };
 		8916CFEA1EFA5217003D4457 /* SentMemesListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentMemesListViewController.swift; sourceTree = "<group>"; };
 		8916CFEB1EFA5217003D4457 /* SentMemesGridViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentMemesGridViewController.swift; sourceTree = "<group>"; };
 		8916CFEC1EFA5217003D4457 /* SentMemesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentMemesTableViewCell.swift; sourceTree = "<group>"; };
@@ -124,7 +122,6 @@
 				89304E571F03CEA400A973E6 /* SelectFontAndColorTableViewCells.swift */,
 				89E8664C1F06918C00B74046 /* SettingsColorSelectionTableViewCell.swift */,
 				898D17F21F07B4180090CA7F /* EmptyDataSetView.swift */,
-				8911C4641F0B6E0E00E259DE /* BlurredBars.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -236,7 +233,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8911C4651F0B6E0E00E259DE /* BlurredBars.swift in Sources */,
 				89304E581F03CEA400A973E6 /* SelectFontAndColorTableViewCells.swift in Sources */,
 				89E8664D1F06918C00B74046 /* SettingsColorSelectionTableViewCell.swift in Sources */,
 				89DA33111EF13BD300741F8F /* Meme.swift in Sources */,
