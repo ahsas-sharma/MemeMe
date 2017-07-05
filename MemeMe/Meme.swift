@@ -20,6 +20,7 @@ struct Meme {
     // Used to store any custom text attributes set by the user
     var textAttributes: TextAttributes
     
+    /// Create a new Meme object and append it to the memes array in AppDelegate
     static func saveMeme(topTextField: UITextField, bottomTextField: UITextField, originalImage: UIImage, memeImage: UIImage, textAttributes: TextAttributes) {
         
          let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: originalImage, memeImage: memeImage, textAttributes: textAttributes)
@@ -43,7 +44,7 @@ struct TextAttributes {
     var topTextFieldCenter: CGPoint?
     var bottomTextFieldCenter: CGPoint?
     
-    // Returns a dictionary for creating an NSAttributedString or setting defaultTextAttributes of UITextField
+    /// Returns a dictionary of text attributes for creating an NSAttributedString or setting defaultTextAttributes on UITextField
     func dictionary() -> [String: Any] {
         let attributesDict:[String:Any] = [
         NSStrokeColorAttributeName : self.borderColor,

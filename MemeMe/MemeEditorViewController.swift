@@ -44,7 +44,7 @@ class MemeEditorViewController: UIViewController {
     
     var textAttributes: TextAttributes = Constants.defaultTextAttributes
     
-    //    var defaultTextAttributes
+    var viewFrameOriginY: CGFloat!
     
     // MARK:- View Lifecycle -
     
@@ -94,7 +94,7 @@ class MemeEditorViewController: UIViewController {
             textfield.textAlignment = .center
         }
         
-        // If a meme image was selected from templates or if editing an existing meme, update buttons UI
+        // If a meme image was selected or if editing an existing meme, update buttons UI
         updateButtonsUI(didSelectImage)
         
     }
@@ -112,13 +112,14 @@ class MemeEditorViewController: UIViewController {
         self.unsubscribeToKeyboardNotifications()
     }
     
+    
     // Adjusts the navigation bar height based on the orientation (as status bar is hidden in landscape mode on phone)
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        //        if UIDevice.current.orientation.isLandscape && UIDevice.current.userInterfaceIdiom == .phone {
-        //            self.navbarHeightConstraint.constant = 44
-        //        } else {
-        //            self.navbarHeightConstraint.constant = 64
-        //        }
+        if UIDevice.current.orientation.isLandscape && UIDevice.current.userInterfaceIdiom == .phone {
+            self.navigationController?.navigationBar.frame.size.height = 44
+        } else {
+            self.navigationController?.navigationBar.frame.size.height = 64
+        }
     }
     
     
@@ -134,7 +135,7 @@ class MemeEditorViewController: UIViewController {
         pickAnImageFrom(.camera)
     }
     
-    // Allows the user to pick an image from a collection of popular memes
+    // Allows the user to pick an image from a collection of popular meme images
     @IBAction func pickAnImageFromTemplates(_ sender: Any) {
         let memeTemplatesNavigationController = self.storyboard!.instantiateViewController(withIdentifier: "MemeTemplatesNavigationController") as! UINavigationController
         let templatesVC = memeTemplatesNavigationController.viewControllers.first as! MemeTemplatesCollectionViewController
@@ -142,13 +143,13 @@ class MemeEditorViewController: UIViewController {
         present(memeTemplatesNavigationController, animated: true, completion: nil)
     }
     
-    // Opens the acivity view controller
+    // Opens the acivity view controller to share the image
     @IBAction func shareImage(_ sender: UIButton) {
         
         ControllerUtils.presentShareActivityControllerWithOptions(memeImage: generateMemedImage(), presentor: self, sourceView: self.view, createNew: true, saveHandler: saveMeme)
     }
     
-    /// Dismiss the presented instance of MemeEditorViewController and reset the editor and all properties to their default state
+    /// Reset the editor and all properties to their default state
     @IBAction func resetMemeEditor() {
         
         imageView.image = nil
@@ -162,6 +163,7 @@ class MemeEditorViewController: UIViewController {
         updateButtonsUI(didSelectImage)
     }
     
+    /// Dismiss the presented instance of MemeEditorViewController
     @IBAction func dismissMemeEditor() {
         self.navigationController?.dismiss(animated: true, completion: nil)
     }
@@ -170,13 +172,20 @@ class MemeEditorViewController: UIViewController {
     
     /// Move up the main view by the height of the keyboard
     func keyboardWillShow(_ notification: NSNotification) {
+        viewFrameOriginY = view.frame.origin.y
         if bottomTextField.isFirstResponder {
-            view.frame.origin.y = getKeyboardHeight(notification) * (-1)
+            print("keyboardWillShow: original y :\(view.frame.origin.y))")
+            view.frame.origin.y = getKeyboardHeight(notification) * (-1) + 64
+            print("keyboardWillShow: new y :\(view.frame.origin.y))")
         }
     }
     
+    /// Return frame to its original position
     func keyboardWillHide(_ notification: NSNotification) {
-        resetViewFrame()
+        view.frame.origin.y = viewFrameOriginY
+        print("keyboardWillHide: new y :\(view.frame.origin.y))")
+        print("navigation controller height: \(String(describing: self.navigationController?.navigationBar.frame.size.height))")
+
     }
     
     /// Return the height of keyboard's frame using the notification
@@ -200,11 +209,6 @@ class MemeEditorViewController: UIViewController {
     
     // MARK:- Helper functions -
     
-    /// Reset the view's frame's y-coordinate back to the original value
-    func resetViewFrame() {
-        view.frame.origin.y = 0
-    }
-    
     /// Update share and cancel buttons based on image selection
     func updateButtonsUI(_ isEnabled: Bool) {
         self.shareButton.isEnabled = isEnabled
@@ -219,6 +223,14 @@ class MemeEditorViewController: UIViewController {
         imagePicker.allowsEditing = true
         imagePicker.setEditing(true, animated: true)
         imagePicker.modalPresentationStyle = .overCurrentContext
+        
+        imagePicker.navigationBar.isTranslucent = true
+        imagePicker.navigationBar.barStyle = .black
+        imagePicker.navigationBar.tintColor = .black
+        imagePicker.navigationBar.setBackgroundImage(UIImage(named:"idareu"), for: .default)
+        imagePicker.navigationBar.titleTextAttributes = [ NSForegroundColorAttributeName : UIColor.white]
+        imagePicker.view.backgroundColor = Constants.Colors.blackLight
+        
         present(imagePicker, animated: true, completion: nil)
     }
     
@@ -317,8 +329,12 @@ extension MemeEditorViewController: UIImagePickerControllerDelegate, UINavigatio
 extension MemeEditorViewController: UITextFieldDelegate {
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        
+        // If no image has been selected, alert the user and return false else clear the default text and begin editing
         if !didSelectImage {
-            let alertController = UIAlertController(title: "No image selected", message: "To begin editing, please select an image from the library or using the camera.", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "No image selected", message: "To begin editing, please select an image.", preferredStyle: .alert)
+            alertController.view.backgroundColor = Constants.Colors.blackDark
+            alertController.view.tintColor = UIColor.white
             let defaultAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
             alertController.addAction(defaultAction)
             self.present(alertController, animated: true, completion: nil)
@@ -335,10 +351,10 @@ extension MemeEditorViewController: UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == self.bottomTextField {
-            self.showStatusBar = false
-            setNeedsStatusBarAppearanceUpdate()
-        }
+//        if textField == self.bottomTextField {
+//            self.showStatusBar = false
+//            setNeedsStatusBarAppearanceUpdate()
+//        }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -402,4 +418,5 @@ extension MemeEditorViewController: UITextFieldDelegate {
  self.present(activityViewController, animated: true, completion: nil)
  }
  
+
 */

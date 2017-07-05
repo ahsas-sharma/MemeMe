@@ -29,6 +29,7 @@ class SentMemesListViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         // Get the sent memes from AppDelegate and reload tableView
         memes = appDelegate.memes
@@ -57,17 +58,6 @@ class SentMemesListViewController: UIViewController {
         let animatedImage = UIImage.animatedImage(with: explosionFrames, duration: 1.0)
         return animatedImage
     }
-    
-    // MARK: - Edit / Share -
-//
-//    @IBAction func editButtonPressed(){
-//        tableView.setEditing(!tableView.isEditing, animated: true)
-//        if tableView.isEditing == true{
-//            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(editButtonPressed))
-//        } else{
-//            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.plain, target: self, action: #selector(editButtonPressed))
-//        }
-//    }
     
     
 }
@@ -105,13 +95,14 @@ extension SentMemesListViewController: UITableViewDataSource, UITableViewDelegat
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let edit = UITableViewRowAction(style: .normal, title: "Edit", handler: {action, index in
+            ControllerUtils.presentMemeEditorViewController(fromStoryboard: self.storyboard!, presentor: self.tabBarController!, withMeme: self.memes[indexPath.row])
             print("Edited a meme")
         })
         edit.backgroundColor = Constants.Colors.peterriver
         let share = UITableViewRowAction(style: .normal, title: "Share", handler: {action, index in
             
             let memeImage = (self.memes[indexPath.row]).memeImage
-            ControllerUtils.presentShareActivityControllerWithOptions(memeImage: memeImage, presentor: self, sourceView: self.view, createNew: false, saveHandler: nil)
+            ControllerUtils.presentShareActivityControllerWithOptions(memeImage: memeImage, presentor: self.tabBarController!, sourceView: self.view, createNew: false, saveHandler: nil)
             print("Open share meme activity controller")
             
         })

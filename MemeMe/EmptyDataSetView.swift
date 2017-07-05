@@ -33,6 +33,7 @@ class EmptyDataSetView : UIView {
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        doubleMemeLabel.attributedText = NSAttributedString(string: "I DOUBLE MEME YOU!", attributes: Constants.defaultTextAttributes.dictionary())
         tapAboveLabel.isHidden = true
     }
 

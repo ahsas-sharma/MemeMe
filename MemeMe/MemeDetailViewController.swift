@@ -34,10 +34,7 @@ class MemeDetailViewController: UIViewController {
         imageView.image = meme.memeImage
     }
     
-    func openMemeInEditor() {
-        ControllerUtils.presentMemeEditorViewController(fromStoryboard: self.storyboard!, presentor: self.tabBarController!, withMeme: meme)
-    }
-    
+   
     // MARK: - Actions -
     
     @IBAction func imageTapped(_ sender: UITapGestureRecognizer) {
@@ -72,6 +69,11 @@ class MemeDetailViewController: UIViewController {
         }
     }
     
+    func openMemeInEditor() {
+        ControllerUtils.presentMemeEditorViewController(fromStoryboard: self.storyboard!, presentor: self.tabBarController!, withMeme: meme)
+    }
+    
+    
     // MARK: - Helper -
     
     override var prefersStatusBarHidden: Bool {
@@ -83,16 +85,22 @@ class MemeDetailViewController: UIViewController {
     }
     
     func hideTabBar() {
+        print("Hiding Tab Bar")
         var frame = self.tabBarController?.tabBar.frame
+        print("tabBar.frame :\(String(describing: frame))")
         frame?.origin.y = self.view.frame.size.height + (frame?.size.height)!
+        print("frame.origin.y : \(String(describing: frame?.origin.y))")
         self.tabBarController?.tabBar.frame = frame!
         self.tabBarController?.tabBar.isHidden = true
 
     }
     
     func showTabBar() {
+        print("Showing tab bar")
         var frame = self.tabBarController?.tabBar.frame
+        print("tabBar.frame :\(String(describing: frame))")
         frame?.origin.y = self.view.frame.size.height - (frame?.size.height)!
+        print("frame.origin.y : \(String(describing: frame?.origin.y))")
         self.tabBarController?.tabBar.frame = frame!
         self.tabBarController?.tabBar.isHidden = false
 

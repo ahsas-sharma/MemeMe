@@ -47,6 +47,7 @@ class ControllerUtils {
         let imageToShare = [memeImage]
         let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
         
+        
         if createNew {
              presentingController = presentor as! MemeEditorViewController
         } else {
