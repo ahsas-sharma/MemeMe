@@ -28,14 +28,13 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="idareu" translatesAutoresizingMaskIntoConstraints="NO" id="H1n-sT-Tlz">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="idoubledareyou" translatesAutoresizingMaskIntoConstraints="NO" id="H1n-sT-Tlz">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Idt-gB-rZR">
-                    <rect key="frame" x="302" y="64" width="63" height="119.5"/>
-                    <string key="text">👆
-TAP
-HERE
+                    <rect key="frame" x="293" y="10" width="72" height="95.5"/>
+                    <string key="text">TAP
+ABOVE
 TO
 BEGIN</string>
                     <fontDescription key="fontDescription" type="system" weight="black" pointSize="20"/>
@@ -45,14 +44,14 @@ BEGIN</string>
                     <size key="shadowOffset" width="0.0" height="0.0"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SEv-Mb-VYc" userLabel="Explosion Image View">
-                    <rect key="frame" x="165" y="10" width="200" height="200"/>
+                    <rect key="frame" x="235" y="10" width="130" height="130"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="200" id="Pt2-F5-Bow"/>
-                        <constraint firstAttribute="height" constant="200" id="w8t-ze-BO6"/>
+                        <constraint firstAttribute="width" constant="130" id="Pt2-F5-Bow"/>
+                        <constraint firstAttribute="height" constant="130" id="w8t-ze-BO6"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I DOUBLE MEME YOU" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ra7-pA-1xh">
-                    <rect key="frame" x="10" y="558" width="355" height="49"/>
+                    <rect key="frame" x="10" y="608" width="355" height="49"/>
                     <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="40"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -68,9 +67,9 @@ BEGIN</string>
                 <constraint firstAttribute="trailing" secondItem="Idt-gB-rZR" secondAttribute="trailing" constant="10" id="OA2-RG-Edc"/>
                 <constraint firstAttribute="trailing" secondItem="H1n-sT-Tlz" secondAttribute="trailing" id="Pls-jR-KpU"/>
                 <constraint firstAttribute="trailing" secondItem="ra7-pA-1xh" secondAttribute="trailing" constant="10" id="TzS-HL-Vdb"/>
-                <constraint firstItem="Idt-gB-rZR" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="64" id="VvJ-PO-adC"/>
+                <constraint firstItem="Idt-gB-rZR" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="VvJ-PO-adC"/>
                 <constraint firstAttribute="trailing" secondItem="SEv-Mb-VYc" secondAttribute="trailing" constant="10" id="nRY-68-pSl"/>
-                <constraint firstAttribute="bottom" secondItem="ra7-pA-1xh" secondAttribute="bottom" constant="60" id="pPk-GX-ZO6"/>
+                <constraint firstAttribute="bottom" secondItem="ra7-pA-1xh" secondAttribute="bottom" constant="10" id="pPk-GX-ZO6"/>
                 <constraint firstItem="ra7-pA-1xh" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="qC2-eu-GZq"/>
                 <constraint firstItem="SEv-Mb-VYc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="vUP-nd-ELb"/>
             </constraints>
@@ -81,6 +80,6 @@ BEGIN</string>
         </view>
     </objects>
     <resources>
-        <image name="idareu" width="16" height="16"/>
+        <image name="idoubledareyou" width="1280" height="986"/>
     </resources>
 </document>

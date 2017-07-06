@@ -22,10 +22,6 @@ class SentMemesListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        let animatedImage = createExplosionAnimationImage()
-//        emptyView.explosionImageView.image = animatedImage
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,25 +37,12 @@ class SentMemesListViewController: UIViewController {
     }
     
     @IBAction func openMemeEditor(_ sender: UIButton) {
+        
+        emptyView.handleExplosionAnimationState()
         ControllerUtils.presentMemeEditorViewController(fromStoryboard: self.storyboard!, presentor: self.tabBarController!, withMeme: nil)
     }
     
-    // MARK: - Explosion Animation -
-    
-    func createExplosionAnimationImage() -> UIImage? {
-        var explosionFrames = [UIImage]()
-        
-        for i in 1...48 {
-            let imageNumber = String(format: "%02d", i)
-            let image = UIImage(named: "explosion_\(imageNumber)")!
-            explosionFrames.append(image)
-        }
-        
-        let animatedImage = UIImage.animatedImage(with: explosionFrames, duration: 1.0)
-        return animatedImage
-    }
-    
-    
+
 }
 
 // MARK: - Table View Delegate-

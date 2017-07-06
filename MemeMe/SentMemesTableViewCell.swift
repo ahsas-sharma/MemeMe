@@ -10,6 +10,7 @@ import UIKit
 
 class SentMemesTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var memeContentView: UIView!
     @IBOutlet weak var memeImageView: UIImageView!
     @IBOutlet weak var topLabel: UILabel!
     @IBOutlet weak var bottomLabel: UILabel!
@@ -18,6 +19,12 @@ class SentMemesTableViewCell: UITableViewCell {
         didSet {
             updateUI()
         }
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        memeContentView.layer.cornerRadius = 5.0
     }
     
     func updateUI() {

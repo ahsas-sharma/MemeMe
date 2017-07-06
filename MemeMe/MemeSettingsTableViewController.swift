@@ -33,25 +33,14 @@ class MemeSettingsTableViewController: UITableViewController {
             view?.layer.borderWidth = 1.0
             view?.layer.borderColor = UIColor.lightGray.cgColor
         }
-        
-        fontColorView.addObserver(self, forKeyPath: "backgroundColor", options: .new, context: nil)
+       
     }
 
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        print(change as Any)
-    }
-    
-    deinit {
-        fontColorView.removeObserver(self, forKeyPath: "backgroundColor")
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         updateCellLabelsAndViews(with: textAttributes)
-        print("textAttributes: fontColor: \(String(describing: textAttributes.fontColor))")
-        print("fontColorView: fontColor: \(String(describing: fontColorView.backgroundColor))")
-
         updatePreviewTextLabel()
 
         self.textFieldsLockSwitch.isOn = memeEditorVC.isTextFieldPositionLocked

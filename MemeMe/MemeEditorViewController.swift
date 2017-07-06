@@ -171,18 +171,15 @@ class MemeEditorViewController: UIViewController {
     func keyboardWillShow(_ notification: NSNotification) {
         viewFrameOriginY = view.frame.origin.y
         if bottomTextField.isFirstResponder {
-            print("keyboardWillShow: original y :\(view.frame.origin.y))")
             view.frame.origin.y = getKeyboardHeight(notification) * (-1) + 64
-            print("keyboardWillShow: new y :\(view.frame.origin.y))")
         }
     }
     
     /// Return frame to its original position
     func keyboardWillHide(_ notification: NSNotification) {
-        view.frame.origin.y = viewFrameOriginY
-        print("keyboardWillHide: new y :\(view.frame.origin.y))")
-        print("navigation controller height: \(String(describing: self.navigationController?.navigationBar.frame.size.height))")
-
+        if let viewFrameOriginY = viewFrameOriginY {
+            view.frame.origin.y = viewFrameOriginY
+        }
     }
     
     /// Return the height of keyboard's frame using the notification
@@ -223,8 +220,8 @@ class MemeEditorViewController: UIViewController {
         
         imagePicker.navigationBar.isTranslucent = true
         imagePicker.navigationBar.barStyle = .black
-        imagePicker.navigationBar.tintColor = .black
-        imagePicker.navigationBar.setBackgroundImage(UIImage(named:"idareu"), for: .default)
+        imagePicker.navigationBar.tintColor = .white
+        imagePicker.navigationBar.barTintColor = .black
         imagePicker.navigationBar.titleTextAttributes = [ NSForegroundColorAttributeName : UIColor.white]
         imagePicker.view.backgroundColor = Constants.Colors.blackLight
         
@@ -234,27 +231,25 @@ class MemeEditorViewController: UIViewController {
     /// Returns a UIImage object generated from the current view
     func generateMemedImage() -> UIImage {
         
-        print("initial self.view.frame : \(self.view.frame)")
-        print("initial self.view.frame.size : \(self.view.frame.size)")
-
         // Hide toolbar and navbar
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.toolbar.isHidden = true
         self.view.layoutIfNeeded()
-        // A cur
-        for textField in textFields {
-            textField.frame.origin.y -= 20
-        }
         
-        print("self.vew.frame after hiding: \(self.view.frame)")
-        print("self.view.frame.size after hiding: \(self.view.frame.size)")
-
+        // A somewhat crude approach to fix text placement issue when capturing view hierarchy with custom positioned textFields (probably status bar height related)
+        for textField in textFields {
+            if (textField == topTextField && textField.center != Constants.defaultTopTextFieldCenter) || (textField == bottomTextField && textField.center != Constants.defaultBottomTextFieldCenter){
+            textField.frame.origin.y -= 20
+            }
+        }
+       
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
         let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
+        // Reset textfields positions after view has been captured
         for textField in textFields {
             textField.frame.origin.y += 20
         }
@@ -264,10 +259,6 @@ class MemeEditorViewController: UIViewController {
         self.toolbar.isHidden = false
         self.view.layoutIfNeeded()
 
-        
-        print("final self.view.frame : \(self.view.frame)")
-        print("final self.view.frame.size : \(self.view.frame.size)")
-        
         return memedImage
     }
     

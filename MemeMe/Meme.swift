@@ -28,6 +28,8 @@ struct Meme {
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
         appDelegate.memes.append(meme)
+        
+        print("=========== SAVED A NEW MEME ===========")
     }
 }
 

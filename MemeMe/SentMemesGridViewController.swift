@@ -35,12 +35,14 @@ class SentMemesGridViewController: UIViewController {
         // Get the sent memes from AppDelegate and reload collectionView
         memes = appDelegate.memes
         collectionView?.reloadData()
-
+        
         // Toggle empty data set view based on meme count
         ControllerUtils.toggleEmptyDataSetView(emptyView, superview: self.view, memeCount: memes.count)
+        
     }
     
     @IBAction func openMemeEditor(_ sender: UIButton) {
+        emptyView.handleExplosionAnimationState()
         ControllerUtils.presentMemeEditorViewController(fromStoryboard: self.storyboard!, presentor: self.tabBarController!, withMeme: nil)
     }
 }
