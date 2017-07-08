@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class SentMemesListViewController: UIViewController {
     
@@ -15,7 +16,8 @@ class SentMemesListViewController: UIViewController {
     var memes = [Meme]()
     var animatedImage: UIImage!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-
+    
+    var player : AVAudioPlayer = AVAudioPlayer()
     
     @IBOutlet weak var emptyView: EmptyDataSetView!
     @IBOutlet weak var tableView: UITableView!
@@ -37,7 +39,7 @@ class SentMemesListViewController: UIViewController {
     }
     
     @IBAction func openMemeEditor(_ sender: UIButton) {
-        
+        ControllerUtils.playSoundWith(player: &self.player)
         emptyView.handleExplosionAnimationState()
         ControllerUtils.presentMemeEditorViewController(fromStoryboard: self.storyboard!, presentor: self.tabBarController!, withMeme: nil)
     }
@@ -79,24 +81,23 @@ extension SentMemesListViewController: UITableViewDataSource, UITableViewDelegat
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let edit = UITableViewRowAction(style: .normal, title: "Edit", handler: {action, index in
             ControllerUtils.presentMemeEditorViewController(fromStoryboard: self.storyboard!, presentor: self.tabBarController!, withMeme: self.memes[indexPath.row])
-            print("Edited a meme")
         })
+        
         edit.backgroundColor = Constants.Colors.peterriver
         let share = UITableViewRowAction(style: .normal, title: "Share", handler: {action, index in
             
             let memeImage = (self.memes[indexPath.row]).memeImage
             ControllerUtils.presentShareActivityControllerWithOptions(memeImage: memeImage, presentor: self.tabBarController!, sourceView: self.view, createNew: false, saveHandler: nil)
-            print("Open share meme activity controller")
             
         })
         share.backgroundColor = Constants.Colors.carrot
         let delete = UITableViewRowAction(style: .destructive, title: "Delete", handler: {action, index in
-            tableView.beginUpdates()
-            self.appDelegate.memes.remove(at: indexPath.row)
-            self.memes.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            tableView.endUpdates()
-            print("Deleted a Meme")
+                tableView.beginUpdates()
+                self.appDelegate.memes.remove(at: indexPath.row)
+                self.memes.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                tableView.endUpdates()
+                ControllerUtils.toggleEmptyDataSetView(self.emptyView, superview: self.view, memeCount: self.memes.count)
         })
         
         return [delete, edit, share]

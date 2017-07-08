@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import AVFoundation
 
 
 class ControllerUtils {
-    
+
     
     /// Handles the visibility of view for empty data set
     ///
@@ -23,9 +24,11 @@ class ControllerUtils {
             view.isHidden = true
             superview.sendSubview(toBack: view)
         } else {
-            view.isHidden = false
-            view.tapAboveLabel.isHidden = false
-            superview.bringSubview(toFront: view)
+            UIView.animate(withDuration: 0.5, animations: {
+                view.isHidden = false
+                view.tapAboveLabel.isHidden = false
+                superview.bringSubview(toFront: view)
+            })
         }
     }
     
@@ -65,7 +68,7 @@ class ControllerUtils {
     /// Handles the presentation of ActivityViewController to allow user to share the meme object
     ///
     /// - Parameters:
-    ///   - memeImage: Meme to share
+    ///   - memeImage: memeImage property of the Meme to share
     ///   - presentor: Presenting object that could be TabBarController or MemeEditorViewController
     ///   - sourceView: The view containing the anchor rectangle for the popover. Added to fix crashes on iPad.
     ///   - createNew: If true, call the saveHandler to create a new Meme object
@@ -98,15 +101,25 @@ class ControllerUtils {
                     
                     // Handle successfully completed activity
                     if completed {
+                        
                         // If a new meme needs to be created, call the saveHandler
-                        createNew ? saveHandler!() : ()
+                        if createNew {
+                            saveHandler!()
+                        } else {
+                
+                            // If share action was initiated from swipe cell action of UITableViewCell(from SentMemesListViewController), hide the swipe actions
+                            if let sentMemesListVC = ((presentingController as! UITabBarController).selectedViewController as? UINavigationController)?.viewControllers.first as? SentMemesListViewController{
+                                sentMemesListVC.tableView.setEditing(false, animated: true)
+                            } else {
+                                // hide action sheet from collectionview
+                            }
+                        }
                         
                         // If user selects 'Save Image', display a success message
                         if activityType == UIActivityType.saveToCameraRoll {
                             
                             // Display a message to inform the user of save success
                             let alertController = UIAlertController(title: "", message: "Meme saved to Photos library", preferredStyle: .alert)
-                            // Customize the color
                             
                             presentingController.present(alertController, animated: true, completion: nil)
                             
@@ -147,4 +160,32 @@ class ControllerUtils {
             })
         }
     }
+    
+    // MARK: - Sound Player
+    
+    static func playSoundWith( player: inout AVAudioPlayer){
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        if appDelegate.explosionAnimatedFinished {
+            return
+        } else {
+            let path = Bundle.main.path(forResource: "Explosion", ofType:"mp3")!
+            let url = URL(fileURLWithPath: path)
+            
+            do {
+                let sound = try AVAudioPlayer(contentsOf: url)
+                player = sound
+                sound.enableRate = true
+                sound.rate = 2.0
+                sound.numberOfLoops = 0
+                sound.prepareToPlay()
+                sound.play()
+            } catch {
+                print("error loading file")
+            }
+
+        }
+        
+    }
+    
 }

@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,58 +21,74 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="idoubledareyou.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="avU-ps-gLS" userLabel="DareYou">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="idoubledareyou" translatesAutoresizingMaskIntoConstraints="NO" id="gZX-eH-zI5">
                                 <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                             </imageView>
-                            <tabBar contentMode="scaleToFill" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FZh-QL-ktV">
-                                <rect key="frame" x="0.0" y="431" width="320" height="49"/>
-                                <items>
-                                    <tabBarItem title="List" image="list" selectedImage="list_filled" id="nKq-lJ-HhV"/>
-                                    <tabBarItem title="Grid" image="grid" selectedImage="grid_filled" id="3Ej-xR-M5q"/>
-                                </items>
-                                <color key="barTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tabBar>
-                            <navigationBar contentMode="scaleToFill" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Mr-RD-0wG">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="4HD-Ic-TW6"/>
-                                </constraints>
-                                <color key="barTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="20"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem id="ifR-Kc-kUT"/>
-                                </items>
-                            </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRs-Gd-tQM">
-                                <rect key="frame" x="238" y="74" width="72" height="95.5"/>
-                                <string key="text">TAP
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kZ4-8F-1cV">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="NgV-uN-XIK">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <navigationBar contentMode="scaleToFill" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Mr-RD-0wG">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="64" id="4HD-Ic-TW6"/>
+                                            </constraints>
+                                            <color key="barTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <textAttributes key="titleTextAttributes">
+                                                <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="20"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </textAttributes>
+                                            <items>
+                                                <navigationItem id="ifR-Kc-kUT"/>
+                                            </items>
+                                        </navigationBar>
+                                        <tabBar contentMode="scaleToFill" barStyle="black" translucent="NO" itemPositioning="fill" translatesAutoresizingMaskIntoConstraints="NO" id="FZh-QL-ktV">
+                                            <rect key="frame" x="0.0" y="431" width="320" height="49"/>
+                                            <items>
+                                                <tabBarItem title="List" image="list" selectedImage="list_filled" id="nKq-lJ-HhV"/>
+                                                <tabBarItem title="Grid" image="grid" selectedImage="grid_filled" id="3Ej-xR-M5q"/>
+                                            </items>
+                                            <color key="barTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </tabBar>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRs-Gd-tQM">
+                                            <rect key="frame" x="238" y="74" width="72" height="95.5"/>
+                                            <string key="text">TAP
 ABOVE
 TO
 BEGIN</string>
-                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="20"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                                <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <size key="shadowOffset" width="0.0" height="0.0"/>
-                            </label>
+                                            <fontDescription key="fontDescription" type="system" weight="black" pointSize="20"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                            <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <size key="shadowOffset" width="0.0" height="0.0"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="2Mr-RD-0wG" firstAttribute="top" secondItem="NgV-uN-XIK" secondAttribute="top" id="77X-vZ-Rfw"/>
+                                        <constraint firstAttribute="trailing" secondItem="FZh-QL-ktV" secondAttribute="trailing" id="DN9-gl-Jze"/>
+                                        <constraint firstItem="eRs-Gd-tQM" firstAttribute="top" secondItem="2Mr-RD-0wG" secondAttribute="bottom" constant="10" id="KPz-sP-e5o"/>
+                                        <constraint firstAttribute="trailing" secondItem="eRs-Gd-tQM" secondAttribute="trailing" constant="10" id="Znh-fv-MxX"/>
+                                        <constraint firstAttribute="bottom" secondItem="FZh-QL-ktV" secondAttribute="bottom" id="iId-wS-rKE"/>
+                                        <constraint firstAttribute="trailing" secondItem="2Mr-RD-0wG" secondAttribute="trailing" id="qis-Pi-OdR"/>
+                                        <constraint firstItem="2Mr-RD-0wG" firstAttribute="leading" secondItem="NgV-uN-XIK" secondAttribute="leading" id="rsO-tN-mx7"/>
+                                        <constraint firstItem="FZh-QL-ktV" firstAttribute="leading" secondItem="NgV-uN-XIK" secondAttribute="leading" id="sCR-by-bg8"/>
+                                    </constraints>
+                                </view>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="2Mr-RD-0wG" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="E0f-If-QVU"/>
-                            <constraint firstAttribute="trailing" secondItem="FZh-QL-ktV" secondAttribute="trailing" id="K0y-CL-w9j"/>
-                            <constraint firstAttribute="trailing" secondItem="avU-ps-gLS" secondAttribute="trailing" id="LWq-Wx-bee"/>
-                            <constraint firstItem="avU-ps-gLS" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="Prv-Di-SJ6"/>
-                            <constraint firstItem="eRs-Gd-tQM" firstAttribute="top" secondItem="2Mr-RD-0wG" secondAttribute="bottom" constant="10" id="gP8-SA-fbu"/>
-                            <constraint firstItem="avU-ps-gLS" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" constant="64" id="hLO-1G-ah8"/>
-                            <constraint firstItem="FZh-QL-ktV" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="hct-0b-3eR"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="FZh-QL-ktV" secondAttribute="bottom" id="kkF-E5-7kE"/>
-                            <constraint firstAttribute="trailing" secondItem="eRs-Gd-tQM" secondAttribute="trailing" constant="10" id="n23-cO-Pq0"/>
-                            <constraint firstItem="2Mr-RD-0wG" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="rcd-O9-RzA"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="avU-ps-gLS" secondAttribute="bottom" constant="49" id="tAV-VS-E4C"/>
-                            <constraint firstAttribute="trailing" secondItem="2Mr-RD-0wG" secondAttribute="trailing" id="wHk-AG-1Za"/>
+                            <constraint firstItem="kZ4-8F-1cV" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="Eev-Me-aMa"/>
+                            <constraint firstAttribute="trailing" secondItem="gZX-eH-zI5" secondAttribute="trailing" id="Gp6-jU-OCu"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="gZX-eH-zI5" secondAttribute="bottom" constant="49" id="IsQ-YX-Byc"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="kZ4-8F-1cV" secondAttribute="bottom" id="J2j-KU-38S"/>
+                            <constraint firstAttribute="trailing" secondItem="kZ4-8F-1cV" secondAttribute="trailing" id="V9m-Yw-K8f"/>
+                            <constraint firstItem="kZ4-8F-1cV" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="iYi-hw-mmZ"/>
+                            <constraint firstItem="gZX-eH-zI5" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="vjP-wr-gmD"/>
+                            <constraint firstItem="gZX-eH-zI5" firstAttribute="top" secondItem="2Mr-RD-0wG" secondAttribute="bottom" id="vvH-Wk-fHj"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
@@ -86,7 +101,7 @@ BEGIN</string>
     <resources>
         <image name="grid" width="16" height="16"/>
         <image name="grid_filled" width="16" height="16"/>
-        <image name="idoubledareyou.jpg" width="1280" height="986"/>
+        <image name="idoubledareyou" width="1280" height="986"/>
         <image name="list" width="16" height="16"/>
         <image name="list_filled" width="16" height="16"/>
     </resources>

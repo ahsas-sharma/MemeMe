@@ -325,10 +325,11 @@ extension MemeEditorViewController: UIImagePickerControllerDelegate, UINavigatio
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
+        // On iPads, there is an issue with editing being enabled. Either the wrong image is picked or it is not cropped properly. Unable to figure out a solution. Found a bug filing on openradar-mirror at https://github.com/lionheart/openradar-mirror/issues/5198
         let image = (info[UIImagePickerControllerEditedImage] as? UIImage) != nil ? (info[UIImagePickerControllerEditedImage] as? UIImage) : (info[UIImagePickerControllerOriginalImage] as? UIImage)
         
-        self.imageView.image = image
-        self.didSelectImage = true
+        imageView.image = image
+        didSelectImage = true
         updateButtonsUI(didSelectImage)
         
         dismiss(animated: true, completion: nil)
@@ -349,11 +350,11 @@ extension MemeEditorViewController: UITextFieldDelegate {
         // If no image has been selected, alert the user and return false else clear the default text and begin editing
         if !didSelectImage {
             let alertController = UIAlertController(title: "No image selected", message: "To begin editing, please select an image.", preferredStyle: .alert)
-            alertController.view.backgroundColor = Constants.Colors.blackDark
-            alertController.view.tintColor = UIColor.white
+            
             let defaultAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
             alertController.addAction(defaultAction)
             self.present(alertController, animated: true, completion: nil)
+            
         } else {
             
             if textField == topTextField && textField.text == "TOP" {
@@ -386,58 +387,3 @@ extension MemeEditorViewController: UITextFieldDelegate {
     }
     
 }
-
-/*
-
- // Opens the acivity view controller
- @IBAction func shareImage(_ sender: UIButton) {
- 
- // Generate and store the meme image
- self.memedImage = self.generateMemedImage()
- 
- // Setup the activity view controller
- let imageToShare = [ memedImage! ]
- let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
- 
- // Fix for crashes on iPad
- activityViewController.popoverPresentationController?.sourceView = self.view
- 
- activityViewController.completionWithItemsHandler =
- { (activityType, completed, returnedItems, error) in
- 
- if error != nil {
- // Just debug print for now. Can better handle error through an alert with retry action.
- debugPrint("There was an error!")
- } else {
- 
- // Create a Meme object
- self.saveMeme()
- 
- // If user selects 'Save Image' and the task completes, display a success message
- if activityType == UIActivityType.saveToCameraRoll && completed {
- 
- // Display a message to inform the user of save success
- let alertController = UIAlertController(title: "", message: "Meme saved to Photos library!", preferredStyle: .alert)
- self.present(alertController, animated: true, completion: nil)
- 
- // Dissmiss the alert after 2 seconds
- let dismissTime = DispatchTime.now() + 2
- DispatchQueue.main.asyncAfter(deadline: dismissTime){
- alertController.dismiss(animated: true, completion: nil)
- self.presentingViewController?.dismiss(animated: true, completion: nil)
- }
- 
- }
- 
- }
- }
- self.present(activityViewController, animated: true, completion: nil)
- }
- 
-
- 
- UIGraphicsBeginImageContext(self.view.frame.size)
- view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
- let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
- UIGraphicsEndImageContext()
-*/

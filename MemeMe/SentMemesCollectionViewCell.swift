@@ -14,7 +14,6 @@ class SentMemesCollectionViewCell: UICollectionViewCell {
     
     var meme: Meme! {
         didSet {
-            print("didSet Image")
             self.imageView.image = meme.memeImage
         }
     }

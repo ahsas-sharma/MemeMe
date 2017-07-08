@@ -23,7 +23,6 @@ class SelectFontTableViewController: UITableViewController {
         super.viewWillDisappear(animated)
         memeSettingsTableVC.textAttributes.fontName = selectedFont
         memeSettingsTableVC.selectedFontIndexPath = lastSelectionIndexPath
-        print("SelectFontTableVC: viewWillDisappear(): textAttributes.fontName: \(memeSettingsTableVC.textAttributes.fontName)")
     }
     // MARK: - Table view data source
     
@@ -83,13 +82,7 @@ class SelectFontTableViewController: UITableViewController {
 
         }
         selectedFont = newSelectionCell.fontName
-        
-        print("Font didSelectRow: lastSelectionIndexPath: \(lastSelectionIndexPath)")
     }
-//    
-//    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-//        let cell = tableView.cellForRow(at: indexPath)
-//        cell?.accessoryType = .none
-//    }
+
 
 }
