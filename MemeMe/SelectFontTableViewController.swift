@@ -10,9 +10,13 @@ import UIKit
 
 class SelectFontTableViewController: UITableViewController {
 
+    // MARK: - Properties
+    
     var selectedFont: String!
     var lastSelectionIndexPath: IndexPath!
     var memeSettingsTableVC: MemeSettingsTableViewController!
+    
+    // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +28,8 @@ class SelectFontTableViewController: UITableViewController {
         memeSettingsTableVC.textAttributes.fontName = selectedFont
         memeSettingsTableVC.selectedFontIndexPath = lastSelectionIndexPath
     }
-    // MARK: - Table view data source
+    
+    // MARK: - Table View functions
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -50,7 +55,6 @@ class SelectFontTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         let cell = cell as! SelectFontTableViewCell
-        print(cell.fontName)
         if cell.fontName == selectedFont {
             cell.accessoryType = .checkmark
         } else {
@@ -59,6 +63,8 @@ class SelectFontTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        print("Selected indexPath :\(indexPath)")
         
         // Deselect the previous selection
         if let lastSelectionIndexPath = lastSelectionIndexPath {
@@ -69,6 +75,7 @@ class SelectFontTableViewController: UITableViewController {
                     lastSelectedCell.accessoryType = .none
                 }
             }
+            print("LastSelectedIndexPath: \(lastSelectionIndexPath)")
             
             if indexPath == lastSelectionIndexPath {
                 return
@@ -79,8 +86,8 @@ class SelectFontTableViewController: UITableViewController {
         let newSelectionCell = tableView.cellForRow(at: indexPath) as! SelectFontTableViewCell
         if newSelectionCell.accessoryType == .none {
             newSelectionCell.accessoryType = .checkmark
-
         }
+        lastSelectionIndexPath = indexPath
         selectedFont = newSelectionCell.fontName
     }
 

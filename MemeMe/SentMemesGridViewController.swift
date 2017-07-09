@@ -16,10 +16,7 @@ class SentMemesGridViewController: UIViewController {
     @IBOutlet weak var emptyView: EmptyDataSetView!
     
     var player: AVAudioPlayer = AVAudioPlayer()
-    
     let minimumPressDuration = 0.5
-    
-    
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var memes = [Meme]()
     
@@ -34,6 +31,7 @@ class SentMemesGridViewController: UIViewController {
         flowLayout.minimumLineSpacing = space
         flowLayout.itemSize = CGSize(width: dimension, height: dimension)
         
+        // Setup long press gesture recognizer for UICollectionViewCell action sheet
         let longPressGestureRecognizer: UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
         self.collectionView.addGestureRecognizer(longPressGestureRecognizer)
 
@@ -52,9 +50,7 @@ class SentMemesGridViewController: UIViewController {
     }
     
     @IBAction func openMemeEditor(_ sender: UIButton) {
-        ControllerUtils.playSoundWith(player: &self.player)
-        emptyView.handleExplosionAnimationState()
-        ControllerUtils.presentMemeEditorViewController(fromStoryboard: self.storyboard!, presentor: self.tabBarController!, withMeme: nil)
+        ControllerUtils.handleOpenMemeEditorAnimationWith(emptyView: self.emptyView, player: &self.player, storyboard: self.storyboard!, presentor: self.tabBarController!)
     }
     
     // MARK: - Action Sheet
@@ -65,12 +61,10 @@ class SentMemesGridViewController: UIViewController {
         }
         
         let point = gestureRecognizer.location(in: self.collectionView)
-        print("Long Press detected at point : \(point)")
 
         if let indexPath: IndexPath = (self.collectionView.indexPathForItem(at: point)) {
             let selectedMeme = self.memes[indexPath.row]
             self.presentActionSheetFor(meme: selectedMeme, atIndexPath: indexPath)
-            print("Presenting action sheet for meme: \(selectedMeme) at :\(indexPath)")
         }
     }
     
@@ -88,31 +82,24 @@ class SentMemesGridViewController: UIViewController {
             self.appDelegate.memes.remove(at: atIndexPath.row)
             self.collectionView.deleteItems(at: [atIndexPath])
             self.collectionView.reloadData()
-            
-            print("Performed delete action")
+            ControllerUtils.toggleEmptyDataSetView(self.emptyView, superview: self.view, memeCount: self.memes.count)
         })
         alertController.addAction(deleteAction)
         
         let shareAction = UIAlertAction(title: "Share", style: .default, handler: { _ in
             ControllerUtils.presentShareActivityControllerWithOptions(memeImage: meme.memeImage, presentor: self.tabBarController!, sourceView: self.view, createNew: false, saveHandler: nil)
-            print("Presented ShareActivityController")
-            
         })
         alertController.addAction(shareAction)
 
         let editAction = UIAlertAction(title: "Edit", style: .default, handler: { _ in
-        
             ControllerUtils.presentMemeEditorViewController(fromStoryboard: self.storyboard!, presentor: self.tabBarController!, withMeme: meme)
-            print("Presented MemeEditorViewController")
 
         })
-    
         alertController.addAction(editAction)
 
         let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: { _ in
             alertController.dismiss(animated: true, completion: nil)
         })
-        
         alertController.addAction(cancelAction)
         
         self.present(alertController, animated: true, completion: nil)

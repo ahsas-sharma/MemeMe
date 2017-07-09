@@ -11,7 +11,7 @@ import UIKit
 // MARK:- Meme -
 
 struct Meme {
-
+    
     let topText: String
     let bottomText: String
     let originalImage: UIImage
@@ -23,13 +23,11 @@ struct Meme {
     /// Create a new Meme object and append it to the memes array in AppDelegate
     static func saveMeme(topTextField: UITextField, bottomTextField: UITextField, originalImage: UIImage, memeImage: UIImage, textAttributes: TextAttributes) {
         
-         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: originalImage, memeImage: memeImage, textAttributes: textAttributes)
+        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: originalImage, memeImage: memeImage, textAttributes: textAttributes)
         
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
         appDelegate.memes.append(meme)
-        
-        print("=========== SAVED A NEW MEME ===========")
     }
 }
 
@@ -49,11 +47,11 @@ struct TextAttributes {
     /// Returns a dictionary of text attributes for creating an NSAttributedString or setting defaultTextAttributes on UITextField
     func dictionary() -> [String: Any] {
         let attributesDict:[String:Any] = [
-        NSStrokeColorAttributeName : self.borderColor,
-        NSForegroundColorAttributeName: self.fontColor,
-        NSStrokeWidthAttributeName: self.borderWidth,
-        NSFontAttributeName: UIFont(name: self.fontName, size: self.fontSize)!]
-    
+            NSStrokeColorAttributeName : self.borderColor,
+            NSForegroundColorAttributeName: self.fontColor,
+            NSStrokeWidthAttributeName: self.borderWidth,
+            NSFontAttributeName: UIFont(name: self.fontName, size: self.fontSize)!]
+        
         return attributesDict
     }
     

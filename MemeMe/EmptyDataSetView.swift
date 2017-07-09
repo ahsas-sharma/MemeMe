@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class EmptyDataSetView : UIView {
     
@@ -16,8 +17,7 @@ class EmptyDataSetView : UIView {
     @IBOutlet weak var tapAboveLabel: UILabel!
     @IBOutlet weak var doubleMemeLabel: UILabel!
     @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var explosionImageView: UIImageView!
-    
+    @IBOutlet weak var bulletImageView: UIImageView!
     
     // MARK: - Initializers
     
@@ -40,43 +40,14 @@ class EmptyDataSetView : UIView {
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         doubleMemeLabel.attributedText = NSAttributedString(string: "I DOUBLE MEME YOU!", attributes: Constants.defaultTextAttributes.dictionary())
-        explosionImageView.isHidden = true
-        prepareExplosionAnimation()
-
+        tapAboveLabel.attributedText = NSAttributedString(string: "TAP ADD TO BEGIN", attributes: Constants.defaultTextAttributes.dictionary())
+        bulletImageView.isHidden = true
     }
     
-    
-    /// Create an array of explosion images and prepare explosionImageView with the animation images and options
-    private func prepareExplosionAnimation() {
-        var explosionFrames = [UIImage]()
-        
-        for i in 1...48 {
-            let imageNumber = String(format: "%02d", i)
-            let image = UIImage(named: "explosion_\(imageNumber)")!
-            explosionFrames.append(image)
-        }
-        
-        explosionImageView.animationImages = explosionFrames
-        explosionImageView.animationDuration = 0.5
-        explosionImageView.animationRepeatCount = 1
-    }
-    
-    func handleExplosionAnimationState() {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        if appDelegate.memes.count > 0 {
-            explosionImageView.isHidden = true
-            tapAboveLabel.isHidden = true
-            self.explosionImageView.stopAnimating()
-        } else {
-            UIView.animate(withDuration: 0.5, animations: {
-                self.tapAboveLabel.isHidden = true
-                self.explosionImageView.isHidden = false
-                self.explosionImageView.startAnimating()
-            })
-        }
-
+ 
+    func toggleBulletImageViewVisibility(show: Bool) {
+        self.bulletImageView.isHidden = !show
     }
 
-
-  
+   
 }

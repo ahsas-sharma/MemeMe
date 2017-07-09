@@ -36,12 +36,11 @@ class SentMemesListViewController: UIViewController {
         // Toggle empty data set view based on meme count
         ControllerUtils.toggleEmptyDataSetView(emptyView, superview: self.view, memeCount: memes.count)
         
+        
     }
     
     @IBAction func openMemeEditor(_ sender: UIButton) {
-        ControllerUtils.playSoundWith(player: &self.player)
-        emptyView.handleExplosionAnimationState()
-        ControllerUtils.presentMemeEditorViewController(fromStoryboard: self.storyboard!, presentor: self.tabBarController!, withMeme: nil)
+        ControllerUtils.handleOpenMemeEditorAnimationWith(emptyView: self.emptyView, player: &self.player, storyboard: self.storyboard!, presentor: self.tabBarController!)
     }
     
 

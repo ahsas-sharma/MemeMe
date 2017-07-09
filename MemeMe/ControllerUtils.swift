@@ -24,9 +24,11 @@ class ControllerUtils {
             view.isHidden = true
             superview.sendSubview(toBack: view)
         } else {
+            view.alpha = 0
             UIView.animate(withDuration: 0.5, animations: {
                 view.isHidden = false
-                view.tapAboveLabel.isHidden = false
+                view.alpha = 1
+                view.bulletImageView.isHidden = true
                 superview.bringSubview(toFront: view)
             })
         }
@@ -139,37 +141,19 @@ class ControllerUtils {
         presentingController.present(activityViewController, animated: true, completion: nil)
     }
     
-    // MARK: - Explosion Animation
-    
-    
-    /// Handles the display of explosion animation and altering visibility of related UI elements based on the memes array in AppDelegate
-    ///
-    /// - Parameter emptyView: EmptyDataSetView that is the superview for the explosionImageView and related UI elements.
-    static func handleExplosionAnimationStateFor(emptyView:EmptyDataSetView) {
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        if appDelegate.memes.count > 0 {
-            emptyView.explosionImageView.isHidden = true
-            emptyView.tapAboveLabel.isHidden = true
-            emptyView.explosionImageView.stopAnimating()
-        } else {
-            UIView.animate(withDuration: 0.5, animations: {
-                emptyView.tapAboveLabel.isHidden = true
-                emptyView.explosionImageView.isHidden = false
-                emptyView.explosionImageView.startAnimating()
-            })
-        }
-    }
-    
     // MARK: - Sound Player
     
+    
+    /// Plays bullet sound effect with the specified AVAudioPlayer object
+    ///
+    /// - Parameter player: AVAudioPlayer (use of inout to modify the argument object)
     static func playSoundWith( player: inout AVAudioPlayer){
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         if appDelegate.explosionAnimatedFinished {
             return
         } else {
-            let path = Bundle.main.path(forResource: "Explosion", ofType:"mp3")!
+            let path = Bundle.main.path(forResource: "Gun", ofType:"mp3")!
             let url = URL(fileURLWithPath: path)
             
             do {
@@ -181,10 +165,32 @@ class ControllerUtils {
                 sound.prepareToPlay()
                 sound.play()
             } catch {
-                print("error loading file")
+                debugPrint("Unable to load audio file")
             }
 
         }
+        
+    }
+    
+    
+    /// Manage presentation of Meme Editor from Sent Memes screen with bullet sound effect and animation
+    ///
+    /// - Parameters:
+    ///   - emptyView: EmptyDataSetView
+    ///   - player: AVAudioPlayer
+    ///   - storyboard: Storyboard
+    ///   - presentor: UITabBarController
+    static func handleOpenMemeEditorAnimationWith(emptyView: EmptyDataSetView, player: inout AVAudioPlayer, storyboard: UIStoryboard, presentor: UITabBarController) {
+        
+        // If emptyView is visible, show bullet effect and play sound
+        if !emptyView.isHidden {
+            emptyView.toggleBulletImageViewVisibility(show: true)
+            self.playSoundWith(player: &player)
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500) , execute: {
+            ControllerUtils.presentMemeEditorViewController(fromStoryboard: storyboard, presentor: presentor, withMeme: nil)
+        })
         
     }
     

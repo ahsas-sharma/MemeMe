@@ -10,7 +10,8 @@
 		8911C4671F0E26A200E259DE /* idoubledareyou.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8911C4661F0E26A200E259DE /* idoubledareyou.jpg */; };
 		8911C4691F109BC100E259DE /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8911C4681F109BC100E259DE /* UIViewExtensions.swift */; };
 		8911C46B1F10B26000E259DE /* Explosion.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8911C46A1F10B26000E259DE /* Explosion.mp3 */; };
-		8911C46D1F10B79800E259DE /* bullet-hole-transparent-glass.png in Resources */ = {isa = PBXBuildFile; fileRef = 8911C46C1F10B79800E259DE /* bullet-hole-transparent-glass.png */; };
+		8911C46F1F10B83300E259DE /* Gun.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8911C46E1F10B83300E259DE /* Gun.mp3 */; };
+		8911C4731F1112C900E259DE /* idoubledareyou_bullet.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8911C4721F1112C900E259DE /* idoubledareyou_bullet.jpg */; };
 		8916CFEE1EFA5217003D4457 /* SentMemesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8916CFEA1EFA5217003D4457 /* SentMemesListViewController.swift */; };
 		8916CFEF1EFA5217003D4457 /* SentMemesGridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8916CFEB1EFA5217003D4457 /* SentMemesGridViewController.swift */; };
 		8916CFF01EFA5217003D4457 /* SentMemesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8916CFEC1EFA5217003D4457 /* SentMemesTableViewCell.swift */; };
@@ -41,7 +42,8 @@
 		8911C4661F0E26A200E259DE /* idoubledareyou.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = idoubledareyou.jpg; sourceTree = "<group>"; };
 		8911C4681F109BC100E259DE /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		8911C46A1F10B26000E259DE /* Explosion.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Explosion.mp3; sourceTree = "<group>"; };
-		8911C46C1F10B79800E259DE /* bullet-hole-transparent-glass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bullet-hole-transparent-glass.png"; sourceTree = "<group>"; };
+		8911C46E1F10B83300E259DE /* Gun.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Gun.mp3; sourceTree = "<group>"; };
+		8911C4721F1112C900E259DE /* idoubledareyou_bullet.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = idoubledareyou_bullet.jpg; sourceTree = "<group>"; };
 		8916CFEA1EFA5217003D4457 /* SentMemesListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentMemesListViewController.swift; sourceTree = "<group>"; };
 		8916CFEB1EFA5217003D4457 /* SentMemesGridViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentMemesGridViewController.swift; sourceTree = "<group>"; };
 		8916CFEC1EFA5217003D4457 /* SentMemesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentMemesTableViewCell.swift; sourceTree = "<group>"; };
@@ -85,7 +87,8 @@
 			isa = PBXGroup;
 			children = (
 				8911C46A1F10B26000E259DE /* Explosion.mp3 */,
-				8911C46C1F10B79800E259DE /* bullet-hole-transparent-glass.png */,
+				8911C4721F1112C900E259DE /* idoubledareyou_bullet.jpg */,
+				8911C46E1F10B83300E259DE /* Gun.mp3 */,
 				8911C4661F0E26A200E259DE /* idoubledareyou.jpg */,
 				89DA33051EEFBE5600741F8F /* Assets.xcassets */,
 				89304E3D1EFBD56B00A973E6 /* ImgFlip */,
@@ -229,11 +232,12 @@
 				89304E461EFFBD0C00A973E6 /* Impact.ttf in Resources */,
 				898D17F51F07B4810090CA7F /* EmptyDataSetView.xib in Resources */,
 				89304E3E1EFBD56B00A973E6 /* ImgFlip in Resources */,
+				8911C46F1F10B83300E259DE /* Gun.mp3 in Resources */,
 				8911C4671F0E26A200E259DE /* idoubledareyou.jpg in Resources */,
 				8911C46B1F10B26000E259DE /* Explosion.mp3 in Resources */,
 				89DA33091EEFBE5600741F8F /* LaunchScreen.storyboard in Resources */,
 				89DA33061EEFBE5600741F8F /* Assets.xcassets in Resources */,
-				8911C46D1F10B79800E259DE /* bullet-hole-transparent-glass.png in Resources */,
+				8911C4731F1112C900E259DE /* idoubledareyou_bullet.jpg in Resources */,
 				89DA33041EEFBE5600741F8F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
