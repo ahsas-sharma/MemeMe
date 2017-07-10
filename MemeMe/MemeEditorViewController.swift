@@ -40,9 +40,6 @@ class MemeEditorViewController: UIViewController {
 
         self.imageView.contentMode = .scaleAspectFit
         
-        // Enable or disable camera button based on source availability
-        cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
-        
         // Disable share and cancel button when the view first loads
         updateButtonsUI(didSelectImage)
         
@@ -65,6 +62,9 @@ class MemeEditorViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // Enable or disable camera button based on source availability
+        cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         
         // Subscribe to be notified when keyboard appears and move the view as necessary
         self.subscribeToKeyboardNotifications()
@@ -94,20 +94,14 @@ class MemeEditorViewController: UIViewController {
     
     // Allows the user to pick an image from the Photos library
     @IBAction func pickAnImageFromAlbum(_ sender: Any) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
-        imagePicker.modalPresentationStyle = .overCurrentContext
-        present(imagePicker, animated: true, completion: nil)
+        pickAnImageFrom(.photoLibrary)
+
     }
     
     // Allows the user to take a new picture using the device camera
     @IBAction func pickAnImageFromCamera(_ sender: Any) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .camera
-        imagePicker.modalPresentationStyle = .overCurrentContext
-        present(imagePicker, animated: true, completion: nil)
+        pickAnImageFrom(.camera)
+
     }
     
     // Opens the acivity view controller
@@ -165,7 +159,7 @@ class MemeEditorViewController: UIViewController {
     // Move up the main view by the height of the keyboard
     func keyboardWillShow(_ notification: NSNotification) {
         if bottomTextField.isFirstResponder {
-            view.frame.origin.y -= getKeyboardHeight(notification)
+            view.frame.origin.y = getKeyboardHeight(notification) * (-1)
         }
     }
     
@@ -228,6 +222,16 @@ class MemeEditorViewController: UIViewController {
         
         // Create an instance of Meme (named changed to silence compiler warning for an unused value)
         _ = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image!, memeImage: memedImage!)
+    }
+    
+    /// Presents an imagePickerController based on the source type
+    func pickAnImageFrom(_ source: UIImagePickerControllerSourceType) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = source
+        imagePicker.modalPresentationStyle = .overCurrentContext
+        
+        present(imagePicker, animated: true, completion: nil)
     }
     
 }
