@@ -10,6 +10,8 @@ import UIKit
 
 class SentMemesTableViewCell: UITableViewCell {
     
+    // MARK: - Outlets and Properties
+    
     @IBOutlet weak var memeContentView: UIView!
     @IBOutlet weak var memeImageView: UIImageView!
     @IBOutlet weak var topLabel: UILabel!
@@ -20,6 +22,8 @@ class SentMemesTableViewCell: UITableViewCell {
             updateUI()
         }
     }
+    
+    // MARK: - Functions
     
     override func layoutSubviews() {
         super.layoutSubviews()

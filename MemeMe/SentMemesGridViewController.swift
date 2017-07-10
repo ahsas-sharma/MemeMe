@@ -11,6 +11,8 @@ import AVFoundation
 
 class SentMemesGridViewController: UIViewController {
     
+    // MARK: - Outlets and Properties
+    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var emptyView: EmptyDataSetView!
@@ -19,6 +21,8 @@ class SentMemesGridViewController: UIViewController {
     let minimumPressDuration = 0.5
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var memes = [Meme]()
+    
+    // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +38,7 @@ class SentMemesGridViewController: UIViewController {
         // Setup long press gesture recognizer for UICollectionViewCell action sheet
         let longPressGestureRecognizer: UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
         self.collectionView.addGestureRecognizer(longPressGestureRecognizer)
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,11 +53,13 @@ class SentMemesGridViewController: UIViewController {
         
     }
     
+    // MARK: - Actions
+    
     @IBAction func openMemeEditor(_ sender: UIButton) {
         ControllerUtils.handleOpenMemeEditorAnimationWith(emptyView: self.emptyView, player: &self.player, storyboard: self.storyboard!, presentor: self.tabBarController!)
     }
     
-    // MARK: - Action Sheet
+    // MARK: - Helper
     
     func handleLongPress(_ gestureRecognizer: UILongPressGestureRecognizer) {
         if gestureRecognizer.state != .ended {
@@ -61,7 +67,7 @@ class SentMemesGridViewController: UIViewController {
         }
         
         let point = gestureRecognizer.location(in: self.collectionView)
-
+        
         if let indexPath: IndexPath = (self.collectionView.indexPathForItem(at: point)) {
             let selectedMeme = self.memes[indexPath.row]
             self.presentActionSheetFor(meme: selectedMeme, atIndexPath: indexPath)
@@ -76,7 +82,7 @@ class SentMemesGridViewController: UIViewController {
     ///   - atIndexPath: indexPath of the selected Meme object
     func presentActionSheetFor(meme: Meme, atIndexPath: IndexPath) {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-       
+        
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
             self.memes.remove(at: atIndexPath.row)
             self.appDelegate.memes.remove(at: atIndexPath.row)
@@ -90,17 +96,26 @@ class SentMemesGridViewController: UIViewController {
             ControllerUtils.presentShareActivityControllerWithOptions(memeImage: meme.memeImage, presentor: self.tabBarController!, sourceView: self.view, createNew: false, saveHandler: nil)
         })
         alertController.addAction(shareAction)
-
+        
         let editAction = UIAlertAction(title: "Edit", style: .default, handler: { _ in
             ControllerUtils.presentMemeEditorViewController(fromStoryboard: self.storyboard!, presentor: self.tabBarController!, withMeme: meme)
-
+            
         })
         alertController.addAction(editAction)
-
+        
         let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: { _ in
             alertController.dismiss(animated: true, completion: nil)
         })
         alertController.addAction(cancelAction)
+        
+        // Fix crash for iPad and setup the popover
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            let popover = alertController.popoverPresentationController
+            popover?.sourceView = collectionView.cellForItem(at: atIndexPath)
+            popover?.sourceRect = (collectionView.cellForItem(at: atIndexPath)?.bounds)!
+            popover?.permittedArrowDirections = .any
+            popover?.backgroundColor = .black
+        }
         
         self.present(alertController, animated: true, completion: nil)
         
@@ -129,7 +144,7 @@ extension SentMemesGridViewController: UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SentMemesCollectionViewCell", for: indexPath) as! SentMemesCollectionViewCell
         cell.meme = self.memes[(indexPath as NSIndexPath).row]
-
+        
         return cell
     }
     

@@ -18,7 +18,7 @@ class MemeEditorViewController: UIViewController {
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet var textFields: [UITextField]!
-        
+    
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var resetButton: UIBarButtonItem!
@@ -70,7 +70,7 @@ class MemeEditorViewController: UIViewController {
         if memeToEdit != nil {
             loadSavedMemeInEditor(memeToEdit)
         }
-
+        
         
     }
     
@@ -236,13 +236,13 @@ class MemeEditorViewController: UIViewController {
         self.toolbar.isHidden = true
         self.view.layoutIfNeeded()
         
-        // A somewhat crude approach to fix text placement issue when capturing view hierarchy with custom positioned textFields (probably status bar height related)
+        // A somewhat crude approach to fix text placement issue when capturing view hierarchy with custom positioned textFields (probably status bar height related issue)
         for textField in textFields {
             if (textField == topTextField && textField.center != Constants.defaultTopTextFieldCenter) || (textField == bottomTextField && textField.center != Constants.defaultBottomTextFieldCenter){
-            textField.frame.origin.y -= 20
+                textField.frame.origin.y -= 20
             }
         }
-       
+        
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
@@ -258,7 +258,7 @@ class MemeEditorViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.toolbar.isHidden = false
         self.view.layoutIfNeeded()
-
+        
         return memedImage
     }
     
@@ -275,7 +275,7 @@ class MemeEditorViewController: UIViewController {
         self.bottomTextField.text = meme.bottomText
         self.imageView.image = meme.originalImage
         self.textAttributes = meme.textAttributes
-
+        
         // Set text attributes and custom text field center values (if available)
         for textField in self.textFields {
             textField.defaultTextAttributes = meme.textAttributes.dictionary()
@@ -325,7 +325,7 @@ extension MemeEditorViewController: UIImagePickerControllerDelegate, UINavigatio
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        // On iPads, there is an issue with editing being enabled. Either the wrong image is picked or it is not cropped properly. Unable to figure out a solution. Found a bug filing on openradar-mirror at https://github.com/lionheart/openradar-mirror/issues/5198
+        // On iPads, there is an issue with the image selection when editing is enabled. Either the wrong image is picked or it is not cropped properly. Unable to figure out a solution. Found a bug filing on openradar-mirror at https://github.com/lionheart/openradar-mirror/issues/5198
         let image = (info[UIImagePickerControllerEditedImage] as? UIImage) != nil ? (info[UIImagePickerControllerEditedImage] as? UIImage) : (info[UIImagePickerControllerOriginalImage] as? UIImage)
         
         imageView.image = image
@@ -365,13 +365,6 @@ extension MemeEditorViewController: UITextFieldDelegate {
             }
         }
         return didSelectImage
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-//        if textField == self.bottomTextField {
-//            self.showStatusBar = false
-//            setNeedsStatusBarAppearanceUpdate()
-//        }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {

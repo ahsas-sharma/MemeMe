@@ -38,7 +38,7 @@ class MemeDetailViewController: UIViewController, UINavigationControllerDelegate
         super.viewWillAppear(animated)
         imageView.image = meme.memeImage
     }
-
+    
     // MARK: - Actions -
     
     /// Handles display of image on full screen. If image is not fullscreen, hide tab, status and navigation bar and make image full screen, else return to its original size and show other elements
@@ -46,7 +46,7 @@ class MemeDetailViewController: UIViewController, UINavigationControllerDelegate
     
     @IBAction func imageTapped(_ sender: UITapGestureRecognizer) {
         self.updateScreenElementsSizeValues()
-
+        
         if !isFullScreen {
             UIView.animate(withDuration: 0.5, animations: {
                 self.hideTabBar()
@@ -113,7 +113,7 @@ class MemeDetailViewController: UIViewController, UINavigationControllerDelegate
             self.defaultNavBarFrame = CGRect(x: 0, y: 0, width: screenWidth, height: 64)
             self.defaultTabBarFrame = CGRect(x: 0, y: (screenHeight - 49), width: screenWidth, height: 49)
             self.defaultImageFrame = CGRect(x:0, y: 0, width: screenWidth, height: (defaultTabBarFrame.origin.y - defaultNavBarFrame.height))
-
+            
         }
     }
     

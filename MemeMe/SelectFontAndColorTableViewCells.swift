@@ -8,14 +8,12 @@
 
 import UIKit
 
+
 class SelectFontTableViewCell: UITableViewCell {
     var fontName: String!
-    
 }
 
 class SelectColorTableViewCell: UITableViewCell {
     @IBOutlet weak var checkmarkImageView: UIImageView!
-    
     var color: UIColor!
-
 }

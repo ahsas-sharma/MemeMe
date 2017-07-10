@@ -10,11 +10,15 @@ import UIKit
 
 class MemeTemplatesCollectionViewController: UICollectionViewController {
     
+    // MARK: - Outlet and Properties
+    
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
     var imageFilePaths: [String]!
     var memeEditorVC: MemeEditorViewController!
-
+    
+    // MARK: - View Lifecycle -
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,6 +34,8 @@ class MemeTemplatesCollectionViewController: UICollectionViewController {
         flowLayout.itemSize = CGSize(width: dimension, height: dimension)
         
     }
+    
+    // MARK: - Collection View -
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -51,6 +57,8 @@ class MemeTemplatesCollectionViewController: UICollectionViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    // MARK: - Actions -
+    
     @IBAction func showCredit(_ sender: Any) {
         let alertController = UIAlertController(title: "Thanks to ImgFlip", message: "All the meme template images were downloaded from ImgFlip. They also have an awesome meme generating community. Check it out at https://imgflip.com/", preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
@@ -61,5 +69,5 @@ class MemeTemplatesCollectionViewController: UICollectionViewController {
     @IBAction func dismiss(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-
+    
 }

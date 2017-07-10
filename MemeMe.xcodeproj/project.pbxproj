@@ -66,7 +66,7 @@
 		89DA33031EEFBE5600741F8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		89DA33051EEFBE5600741F8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = MemeMe/Assets.xcassets; sourceTree = "<group>"; };
 		89DA33081EEFBE5600741F8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		89DA330A1EEFBE5600741F8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		89DA330A1EEFBE5600741F8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = MemeMe/Info.plist; sourceTree = "<group>"; };
 		89DA33101EF13BD300741F8F /* Meme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
 		89E8664C1F06918C00B74046 /* SettingsColorSelectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsColorSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		89EA72081F07C8DD00835257 /* ControllerUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerUtils.swift; sourceTree = "<group>"; };
@@ -83,9 +83,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8911C4741F132D2F00E259DE /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				89DA33021EEFBE5600741F8F /* Main.storyboard */,
+				898D17F41F07B4810090CA7F /* EmptyDataSetView.xib */,
+				89DA33071EEFBE5600741F8F /* LaunchScreen.storyboard */,
+			);
+			name = Storyboard;
+			sourceTree = "<group>";
+		};
 		89304E471EFFBD3000A973E6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				89DA330A1EEFBE5600741F8F /* Info.plist */,
 				8911C46A1F10B26000E259DE /* Explosion.mp3 */,
 				8911C4721F1112C900E259DE /* idoubledareyou_bullet.jpg */,
 				8911C46E1F10B83300E259DE /* Gun.mp3 */,
@@ -157,11 +168,8 @@
 		89DA32FD1EEFBE5600741F8F /* MemeMe */ = {
 			isa = PBXGroup;
 			children = (
+				8911C4741F132D2F00E259DE /* Storyboard */,
 				89304E471EFFBD3000A973E6 /* Resources */,
-				89DA33021EEFBE5600741F8F /* Main.storyboard */,
-				89DA330A1EEFBE5600741F8F /* Info.plist */,
-				898D17F41F07B4810090CA7F /* EmptyDataSetView.xib */,
-				89DA33071EEFBE5600741F8F /* LaunchScreen.storyboard */,
 				89304E491EFFBD6E00A973E6 /* Model */,
 				89304E4A1EFFBD7900A973E6 /* View */,
 				89304E481EFFBD6700A973E6 /* Controller */,

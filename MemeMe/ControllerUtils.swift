@@ -11,7 +11,7 @@ import AVFoundation
 
 
 class ControllerUtils {
-
+    
     
     /// Handles the visibility of view for empty data set
     ///
@@ -24,7 +24,7 @@ class ControllerUtils {
             view.isHidden = true
             superview.sendSubview(toBack: view)
         } else {
-            view.alpha = 0
+            view.alpha = 0.5
             UIView.animate(withDuration: 0.5, animations: {
                 view.isHidden = false
                 view.alpha = 1
@@ -108,12 +108,10 @@ class ControllerUtils {
                         if createNew {
                             saveHandler!()
                         } else {
-                
+                            
                             // If share action was initiated from swipe cell action of UITableViewCell(from SentMemesListViewController), hide the swipe actions
                             if let sentMemesListVC = ((presentingController as! UITabBarController).selectedViewController as? UINavigationController)?.viewControllers.first as? SentMemesListViewController{
                                 sentMemesListVC.tableView.setEditing(false, animated: true)
-                            } else {
-                                // hide action sheet from collectionview
                             }
                         }
                         
@@ -150,7 +148,7 @@ class ControllerUtils {
     static func playSoundWith( player: inout AVAudioPlayer){
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        if appDelegate.explosionAnimatedFinished {
+        if appDelegate.stopBulletAnimation {
             return
         } else {
             let path = Bundle.main.path(forResource: "Gun", ofType:"mp3")!
@@ -167,7 +165,7 @@ class ControllerUtils {
             } catch {
                 debugPrint("Unable to load audio file")
             }
-
+            
         }
         
     }

@@ -9,7 +9,9 @@
 import UIKit
 
 class SelectColorTableViewController: UITableViewController {
-
+    
+    // MARK: - Properties
+    
     enum SetColorFor {
         case border, font
     }
@@ -19,7 +21,7 @@ class SelectColorTableViewController: UITableViewController {
     
     var selectedBorderColor: UIColor!
     var selectedFontColor: UIColor!
-
+    
     var settingColorFor: SetColorFor!
     var lastBorderColorSelectionIndexPath: IndexPath!
     var lastFontColorSelectionIndexPath: IndexPath!
@@ -54,19 +56,19 @@ class SelectColorTableViewController: UITableViewController {
         }
         
     }
-
-    // MARK: - Table view data source
-
+    
+    // MARK: - Table view DataSource and Delegate
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return colors.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SelectColorTableViewCell", for: indexPath) as! SelectColorTableViewCell
         cell.backgroundColor = colors[indexPath.row]
@@ -79,7 +81,7 @@ class SelectColorTableViewController: UITableViewController {
         let cell = cell as! SelectColorTableViewCell
         switch settingColorFor! {
         case .border:
-           if cell.color == selectedBorderColor {
+            if cell.color == selectedBorderColor {
                 cell.checkmarkImageView.isHidden = false
                 lastBorderColorSelectionIndexPath = indexPath
             } else {
@@ -94,7 +96,7 @@ class SelectColorTableViewController: UITableViewController {
             }
         }
     }
- 
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let newSelectioncell = tableView.cellForRow(at: indexPath) as! SelectColorTableViewCell
         
@@ -117,7 +119,7 @@ class SelectColorTableViewController: UITableViewController {
             
         case .font:
             if let lastFontColorSelectionIndexPath = lastFontColorSelectionIndexPath {
-               
+                
                 if indexPath == lastFontColorSelectionIndexPath {
                     return
                 } else {
@@ -135,5 +137,5 @@ class SelectColorTableViewController: UITableViewController {
         }
         
     }
-
+    
 }

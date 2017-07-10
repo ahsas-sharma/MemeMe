@@ -44,10 +44,10 @@ class EmptyDataSetView : UIView {
         bulletImageView.isHidden = true
     }
     
- 
+    
     func toggleBulletImageViewVisibility(show: Bool) {
         self.bulletImageView.isHidden = !show
     }
-
-   
+    
+    
 }

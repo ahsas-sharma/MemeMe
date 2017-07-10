@@ -9,7 +9,7 @@
 import UIKit
 
 struct Constants {
-
+    
     // MARK: - Meme Text Settings -
     
     // Stores an array of font names
@@ -31,16 +31,16 @@ struct Constants {
     static var defaultTopTextFieldCenter: CGPoint!
     static var defaultBottomTextFieldCenter: CGPoint!
     
-    // Stores default text attributes for the text fields 
+    // Stores default text attributes for the text fields
     static let defaultTextAttributes = TextAttributes(fontName: "Impact", fontSize: 40, fontColor: UIColor.white, borderWidth: -5, borderColor: UIColor.black, topTextFieldCenter: nil, bottomTextFieldCenter: nil)
-
+    
     // Default preview text
     static let previewText = "THIS IS MEME ME!"
     
     // MARK: - Colors -
     
     struct Colors {
-    
+        
         static let blackDark = UIColor.init(red: 29/255, green: 29/255, blue: 29/255, alpha: 1.0)
         static let blackLight = UIColor.init(red: 32/255, green: 32/255, blue: 32/255, alpha: 1.0)
         static let white = UIColor.white
@@ -66,7 +66,7 @@ struct Constants {
         static let wisteria = UIColor.init(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
         static let wetasphalt = UIColor.init(red: 52/255, green: 73/255, blue: 94/255, alpha: 1.0)
         static let midnightblue = UIColor.init(red: 44/255, green: 62/255, blue: 80/255, alpha: 1.0)
-    
+        
         static func array() -> [UIColor] {
             return [blackDark, blackLight, white, turquoise, greensea, emerald, nephritis, peterriver, belizehole, sunflower, orange, carrot, pumpkin, alizarin, pomegranate, clouds, silver, concrete, asbestos, amethyst, wisteria, wetasphalt, midnightblue]
         }

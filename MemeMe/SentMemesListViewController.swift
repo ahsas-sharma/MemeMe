@@ -11,16 +11,16 @@ import AVFoundation
 
 class SentMemesListViewController: UIViewController {
     
-    //TODO: - Add a "swipe to delete” function to your table view to allow users to delete a meme.
-
-    var memes = [Meme]()
-    var animatedImage: UIImage!
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    
-    var player : AVAudioPlayer = AVAudioPlayer()
+    // MARK: - Outlets and Properties
     
     @IBOutlet weak var emptyView: EmptyDataSetView!
     @IBOutlet weak var tableView: UITableView!
+    
+    var memes = [Meme]()
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var player : AVAudioPlayer = AVAudioPlayer()
+    
+    // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,18 +35,18 @@ class SentMemesListViewController: UIViewController {
         
         // Toggle empty data set view based on meme count
         ControllerUtils.toggleEmptyDataSetView(emptyView, superview: self.view, memeCount: memes.count)
-        
-        
     }
+    
+    // MARK: - Action
     
     @IBAction func openMemeEditor(_ sender: UIButton) {
         ControllerUtils.handleOpenMemeEditorAnimationWith(emptyView: self.emptyView, player: &self.player, storyboard: self.storyboard!, presentor: self.tabBarController!)
     }
     
-
+    
 }
 
-// MARK: - Table View Delegate-
+// MARK: - Table View DataSource and Delegate-
 
 extension SentMemesListViewController: UITableViewDataSource, UITableViewDelegate {
     
@@ -68,7 +68,7 @@ extension SentMemesListViewController: UITableViewDataSource, UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    
+        
         let selectedMeme = memes[(indexPath as NSIndexPath).row]
         ControllerUtils.pushMemeDetailViewController(fromStoryboard: self.storyboard!, presentor: self.navigationController!, withMeme: selectedMeme)
     }
@@ -91,12 +91,12 @@ extension SentMemesListViewController: UITableViewDataSource, UITableViewDelegat
         })
         share.backgroundColor = Constants.Colors.carrot
         let delete = UITableViewRowAction(style: .destructive, title: "Delete", handler: {action, index in
-                tableView.beginUpdates()
-                self.appDelegate.memes.remove(at: indexPath.row)
-                self.memes.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .fade)
-                tableView.endUpdates()
-                ControllerUtils.toggleEmptyDataSetView(self.emptyView, superview: self.view, memeCount: self.memes.count)
+            tableView.beginUpdates()
+            self.appDelegate.memes.remove(at: indexPath.row)
+            self.memes.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.endUpdates()
+            ControllerUtils.toggleEmptyDataSetView(self.emptyView, superview: self.view, memeCount: self.memes.count)
         })
         
         return [delete, edit, share]
@@ -105,7 +105,7 @@ extension SentMemesListViewController: UITableViewDataSource, UITableViewDelegat
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         // Empty implementation to enable swipe actions as defined in the function above.
     }
- 
+    
 }
 
 

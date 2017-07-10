@@ -10,7 +10,9 @@ import UIKit
 
 class MemeSettingsTableViewController: UITableViewController {
     
-    @IBOutlet weak var settingsFontTypeCell: UITableViewCell!    
+    // MARK: - Outlets and Properties
+    
+    @IBOutlet weak var settingsFontTypeCell: UITableViewCell!
     @IBOutlet weak var fontSizeStepper: UIStepper!
     @IBOutlet weak var borderWidthStepper: UIStepper!
     @IBOutlet weak var textPreviewLabel: UILabel!
@@ -21,9 +23,10 @@ class MemeSettingsTableViewController: UITableViewController {
     @IBOutlet weak var borderWidthLabel: UILabel!
     
     var textAttributes: TextAttributes!
-    
     var selectedFontIndexPath: IndexPath!
     var memeEditorVC: MemeEditorViewController!
+    
+    // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,16 +36,16 @@ class MemeSettingsTableViewController: UITableViewController {
             view?.layer.borderWidth = 1.0
             view?.layer.borderColor = UIColor.lightGray.cgColor
         }
-       
+        
     }
-
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         updateCellLabelsAndViews(with: textAttributes)
         updatePreviewTextLabel()
-
+        
         self.textFieldsLockSwitch.isOn = memeEditorVC.isTextFieldPositionLocked
     }
     
@@ -54,7 +57,7 @@ class MemeSettingsTableViewController: UITableViewController {
     }
     
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -80,7 +83,7 @@ class MemeSettingsTableViewController: UITableViewController {
         default: ()
         }
     }
- 
+    
     
     // MARK: - Actions
     
@@ -88,7 +91,7 @@ class MemeSettingsTableViewController: UITableViewController {
         textPreviewLabel.attributedText =  NSAttributedString(string: Constants.previewText, attributes: Constants.defaultTextAttributes.dictionary())
         textAttributes = Constants.defaultTextAttributes
         updateCellLabelsAndViews(with: textAttributes)
-
+        
     }
     
     @IBAction func fontSizeChanged(_ sender: Any) {
@@ -105,10 +108,16 @@ class MemeSettingsTableViewController: UITableViewController {
     
     // MARK: - Helper Functions
     
+    
+    /// Update preview text based on the current text attributes
     func updatePreviewTextLabel() {
-         textPreviewLabel.attributedText = NSAttributedString(string: Constants.previewText, attributes: textAttributes.dictionary())
+        textPreviewLabel.attributedText = NSAttributedString(string: Constants.previewText, attributes: textAttributes.dictionary())
     }
     
+    
+    /// Update all the setting value labels and color preview UIView's using the TextAttributes object
+    ///
+    /// - Parameter attributes: TextAttributes object to apply
     func updateCellLabelsAndViews(with attributes: TextAttributes) {
         settingsFontTypeCell.detailTextLabel?.text = attributes.fontName
         fontSizeLabel.text = String(describing: Int(attributes.fontSize))
@@ -116,5 +125,5 @@ class MemeSettingsTableViewController: UITableViewController {
         borderWidthLabel.text = String(describing: abs(attributes.borderWidth))
         borderColorView.backgroundColor = attributes.borderColor
     }
-
+    
 }

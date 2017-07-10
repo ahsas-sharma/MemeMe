@@ -9,7 +9,7 @@
 import UIKit
 
 class SelectFontTableViewController: UITableViewController {
-
+    
     // MARK: - Properties
     
     var selectedFont: String!
@@ -29,15 +29,13 @@ class SelectFontTableViewController: UITableViewController {
         memeSettingsTableVC.selectedFontIndexPath = lastSelectionIndexPath
     }
     
-    // MARK: - Table View functions
+    // MARK: - Table View DataSource and Delegate
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return Constants.fonts.count
     }
     
@@ -90,6 +88,6 @@ class SelectFontTableViewController: UITableViewController {
         lastSelectionIndexPath = indexPath
         selectedFont = newSelectionCell.fontName
     }
-
-
+    
+    
 }

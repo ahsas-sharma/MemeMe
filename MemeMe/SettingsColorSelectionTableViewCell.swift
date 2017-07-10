@@ -9,7 +9,7 @@
 import UIKit
 
 class SettingsFontColorTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var colorView: UIView!
     var selectedColor: UIColor!
     
@@ -24,14 +24,14 @@ class SettingsFontColorTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         // Please do nothing. Thank you!
     }
-
+    
 }
 
 class SettingsBorderColorTableViewCell: UITableViewCell {
     
     @IBOutlet weak var colorView: UIView!
     var selectedColor: UIColor!
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         if let selectedColor = selectedColor {
@@ -43,5 +43,5 @@ class SettingsBorderColorTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         // Please do nothing. Thank you!
     }
-
+    
 }
