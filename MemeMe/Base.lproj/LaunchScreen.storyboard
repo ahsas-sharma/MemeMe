@@ -21,34 +21,66 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ec3-Zv-QZ4">
-                                <rect key="frame" x="68" y="174" width="184.5" height="132"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MemeMe" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cvx-dg-8fz">
-                                        <rect key="frame" x="0.0" y="0.0" width="184.5" height="48"/>
-                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="40"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.😵" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ldU-FN-ylS">
-                                        <rect key="frame" x="26" y="48" width="132.5" height="84"/>
-                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="70"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
+                            <navigationBar contentMode="scaleToFill" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Mr-RD-0wG">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="4HD-Ic-TW6"/>
+                                </constraints>
+                                <color key="barTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="20"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem id="ifR-Kc-kUT"/>
+                                </items>
+                            </navigationBar>
+                            <tabBar contentMode="scaleToFill" barStyle="black" translucent="NO" itemPositioning="fill" translatesAutoresizingMaskIntoConstraints="NO" id="FZh-QL-ktV">
+                                <rect key="frame" x="0.0" y="431" width="320" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="INj-zi-UMo"/>
+                                </constraints>
+                                <items/>
+                                <color key="barTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tabBar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="idoubledareyou.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Ehe-lU-Bed">
+                                <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                            </imageView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1CH-9e-Zlj">
+                                <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Igs-6F-00G">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
-                            <constraint firstItem="ec3-Zv-QZ4" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="CX9-rG-vFF"/>
-                            <constraint firstItem="ec3-Zv-QZ4" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Tro-or-lFg"/>
+                            <constraint firstItem="Ehe-lU-Bed" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="65e-8s-4Nt"/>
+                            <constraint firstItem="2Mr-RD-0wG" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="9Qy-EV-Ccd"/>
+                            <constraint firstItem="1CH-9e-Zlj" firstAttribute="top" secondItem="2Mr-RD-0wG" secondAttribute="bottom" id="B3d-1O-Yz3"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="FZh-QL-ktV" secondAttribute="bottom" id="BgY-gj-ntp"/>
+                            <constraint firstAttribute="trailing" secondItem="1CH-9e-Zlj" secondAttribute="trailing" id="EmH-En-jPX"/>
+                            <constraint firstItem="2Mr-RD-0wG" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="Jiy-ay-bJ8"/>
+                            <constraint firstItem="2Mr-RD-0wG" firstAttribute="bottom" secondItem="Ehe-lU-Bed" secondAttribute="top" id="Jng-rQ-wEf"/>
+                            <constraint firstItem="1CH-9e-Zlj" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="MWO-KE-poz"/>
+                            <constraint firstAttribute="trailing" secondItem="Ehe-lU-Bed" secondAttribute="trailing" id="PBT-F2-NVF"/>
+                            <constraint firstItem="FZh-QL-ktV" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="X30-fc-BiE"/>
+                            <constraint firstAttribute="trailing" secondItem="FZh-QL-ktV" secondAttribute="trailing" id="efb-vA-0Ei"/>
+                            <constraint firstItem="FZh-QL-ktV" firstAttribute="top" secondItem="1CH-9e-Zlj" secondAttribute="bottom" id="fuD-o0-rFL"/>
+                            <constraint firstItem="FZh-QL-ktV" firstAttribute="top" secondItem="Ehe-lU-Bed" secondAttribute="bottom" id="izy-8Z-X3A"/>
+                            <constraint firstAttribute="trailing" secondItem="2Mr-RD-0wG" secondAttribute="trailing" id="m8E-iN-Cni"/>
                         </constraints>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="52.5" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="idoubledareyou.jpg" width="1280" height="986"/>
+    </resources>
 </document>
